@@ -9,7 +9,7 @@
     <executionEnabled>true</executionEnabled>
     <id>a0b69918-10e1-4858-98e7-50febe7314ca</id>
     <loglevel>INFO</loglevel>
-    <name>test</name>
+    <name>test2</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
