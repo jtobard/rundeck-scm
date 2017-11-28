@@ -1,0 +1,39 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 24,25,26
+Check windows version, memory/cpu/disk space - Powershell command from Phil]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>RackspaceBaseConfiguration</group>
+    <id>619b17f4-58a3-4f02-99cc-a928b36469a9</id>
+    <loglevel>INFO</loglevel>
+    <name>OSChecks</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Check Operating System</description>
+        <exec>(Get-WmiObject -class Win32_OperatingSystem).Caption</exec>
+      </command>
+      <command>
+        <description>Check Disk Size </description>
+        <exec>Get-WMIObject Win32_LogicalDisk | Select DeviceID, @{Name=”freespace(GB)”;Expression={“{0:N1}” -f($_.size/1gb)}}</exec>
+      </command>
+      <command>
+        <description>Check RAM/vCPU</description>
+        <exec>get-wmiobject Win32_ComputerSystem | select @{name="TotalPhysicalMemory(MB)";expression={($_.TotalPhysicalMemory/1mb).tostring("N0")}},NumberOfProcessors</exec>
+      </command>
+    </sequence>
+    <uuid>619b17f4-58a3-4f02-99cc-a928b36469a9</uuid>
+  </job>
+</joblist>

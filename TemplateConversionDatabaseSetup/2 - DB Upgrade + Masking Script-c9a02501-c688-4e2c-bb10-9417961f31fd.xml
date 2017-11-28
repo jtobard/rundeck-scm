@@ -1,0 +1,88 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='SADN_USERNAME' required='true'>
+          <description>Please put your SADN Username</description>
+        </option>
+        <option name='SADN_PASSWORD' required='true' secure='true' valueExposed='true'>
+          <description>SADN Password</description>
+        </option>
+        <option name='DATABASE_NAME' required='true'>
+          <description><![CDATA[Database name
+example: STMM\_DEV1\_MAIN, BCM\_DEV2\_MAIN]]></description>
+        </option>
+        <option enforcedvalues='true' name='PostDBUpgradeSQL' required='true' value='N' values='N,Y'>
+          <description>Flag determining if any SQL needs to be executed after DB Upgrade</description>
+        </option>
+        <option enforcedvalues='true' name='LDAP' required='true' value='N' values='N,Y'>
+          <description>Flag determining if MT LDAP authentication will be turned on</description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[DB Restore and DB Upgrade Prep
+
+#### This is the second step of CRIMS Upgrade Job, Read Me before Running this Job
+
+***`The Four Components of This Script:`***
+
+1. Running DB upgrade from command line (option: reset database info)
+2. Running masking script sql file
+3. Running (driven by job option) SQL script to be executed after DB upgrade
+4. Setting (driven by job option) LDAP authentication
+
+***`Required Fields:`***
+
+1. SADN_USERNAME - Please put your SADN Username
+2. SADN_PASSWORD - SADN Password
+3. DATABASE_NAME - STMM_DEV1_MAIN, BCM_DEV2_MAIN
+4. PostDBUpgradeSQL - Select Y if you want Post Database SQL upgrade
+5. LDAP 
+
+
+---
+Runbook
+
+1. Nothing to note
+
+]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>TemplateConversionDatabaseSetup</group>
+    <id>c9a02501-c688-4e2c-bb10-9417961f31fd</id>
+    <loglevel>DEBUG</loglevel>
+    <name>2 - DB Upgrade + Masking Script</name>
+    <nodeFilterEditable>true</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:17R1,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>DB Upgrade</description>
+        <exec>D:\CRIMS_UPG_AUTOMATION\batches\2_1_DbUpgrade.bat</exec>
+      </command>
+      <command>
+        <description>Masking Script</description>
+        <exec>D:\CRIMS_UPG_AUTOMATION\batches\2_2_MaskingScript.bat</exec>
+      </command>
+      <command>
+        <description>Post DB Upgrade SQL</description>
+        <exec>D:\CRIMS_UPG_AUTOMATION\batches\2_3_PostDBUpgradeSQL.bat</exec>
+      </command>
+      <command>
+        <description>Setup LDAP</description>
+        <exec>D:\CRIMS_UPG_AUTOMATION\batches\2_4_SetLDAP.bat</exec>
+      </command>
+    </sequence>
+    <timeout>2h</timeout>
+    <uuid>c9a02501-c688-4e2c-bb10-9417961f31fd</uuid>
+  </job>
+</joblist>

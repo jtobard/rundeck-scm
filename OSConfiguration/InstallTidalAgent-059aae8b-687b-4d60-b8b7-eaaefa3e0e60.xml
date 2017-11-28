@@ -1,0 +1,54 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='TAG_NAME' required='true' valuesUrl='file:/rundeckpro/optionProviders/tags.json'>
+          <description>This is resource tagname</description>
+        </option>
+        <option name='REMOTE_HOST' required='true' valuesUrl='file:/rundeckpro/optionProviders/${option.TAG_NAME.value}.json'>
+          <description>This is remote host name</description>
+        </option>
+        <option name='CLIENT_CODE' required='true'>
+          <description>This is Client Code</description>
+        </option>
+        <option name='PASSWORD' required='true' secure='true' valueExposed='true'>
+          <description>This is Tidal Agent Password</description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 43
+Ansible Playbook does the following
+
+1. Run as an administrator and click next all the way through
+2. Open services by navigating to Start -> All Programs -> Services
+3. Verify the service TIDAl_AGENT_1 now exists
+4. right click on the service and open Properties
+5. Select the Log On tab and change the account to use the tidal_agent-<client> domain account
+6. Restart the service]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>059aae8b-687b-4d60-b8b7-eaaefa3e0e60</id>
+    <loglevel>INFO</loglevel>
+    <name>InstallTidalAgent</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: Ansible</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Playbook for installing Tidal Agent</description>
+        <exec>sudo ansible-playbook /etc/ansible/playbooks/Infra/VMCC/InstallTidalAgent.yml --extra-vars "remote_host=${option.REMOTE_HOST} client_code=${option.CLIENT_CODE} password=${option.PASSWORD}"</exec>
+      </command>
+    </sequence>
+    <uuid>059aae8b-687b-4d60-b8b7-eaaefa3e0e60</uuid>
+  </job>
+</joblist>

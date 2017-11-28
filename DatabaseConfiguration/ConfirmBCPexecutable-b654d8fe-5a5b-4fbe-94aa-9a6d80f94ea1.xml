@@ -1,0 +1,46 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 75
+Verify that BCP is installed in the following path
+C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\bcp.exe]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>b654d8fe-5a5b-4fbe-94aa-9a6d80f94ea1</id>
+    <loglevel>INFO</loglevel>
+    <name>ConfirmBCPexecutable</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Confirm BCP Installed</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[write-host "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\bcp.exe"
+$bcp = test-path "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\bcp.exe"
+if ($bcp) {"1"} else {"0"}
+
+if ($bcp -eq $true)
+{   Write-Host "This job completed normally"
+exit 0
+}
+else
+{
+    Write-Host "This job completed abnormally"
+    exit 1
+    }]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>b654d8fe-5a5b-4fbe-94aa-9a6d80f94ea1</uuid>
+  </job>
+</joblist>

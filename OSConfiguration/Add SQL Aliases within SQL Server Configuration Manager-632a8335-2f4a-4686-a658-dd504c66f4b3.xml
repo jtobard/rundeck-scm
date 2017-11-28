@@ -1,0 +1,124 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='ALIAS_NAME' required='true'>
+          <description><![CDATA[Should be DNS entry that has been put in place for the server 
+i.e <CLIENT CODE>-<ENV><NUMBER>.ms.crd.com for example crd-t1.ms.crd.com]]></description>
+        </option>
+        <option name='SERVER_IP' required='true' />
+        <option name='PORT' required='true' />
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 47
+
+***`Add the SQL alias in SQL Server Configuration Manager. Add an alias for`***
+
+1. SQL Native Client 11.0 Configuration (32bit)
+2. SQL Native Client 11.0 Configuration
+ 
+***`Include the following in the alias`***
+
+1. Alias Name: (Should be DNS entry that has been put in place for the server i.e <CLIENT CODE>-<ENV><NUMBER>.ms.crd.com for example crd-t1.ms.crd.com)
+2. Server IP Address
+3. Port # (enter in Parameters)
+ 
+****NOTE****
+ 
+1. Some times the alias will not work within SQL when trying to login and you will receive an "Untrusted Domain" error message. If you do, run Powershel as Administrator and enter the following command:
+2. New-ItemProperty HKLM:\System\CurrentControlSet\Control\Lsa\MSV1_0 -Name "BackConnectionHostNames" -Value "crd-t1.ms.crd.com","FQDN" -PropertyType multistring
+3. If powershell returns an error manually navigate to HKLM:\System\CurrentControlSet\Control\Lsa\MSV1_0 and change the values of "BackConnectionHostNames"]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>632a8335-2f4a-4686-a658-dd504c66f4b3</id>
+    <loglevel>INFO</loglevel>
+    <name>Add SQL Aliases within SQL Server Configuration Manager</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Add SQL Aliases within SQL Server Configuration Manager</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[<#
+.SYNOPSIS
+	Adds a SQL Server alias to the current server.
+	
+.DESCRIPTION
+	Adds a SQL Server alias to the current server.
+	
+.NOTES
+	File Name: Add-SQLServerAlias.ps1
+	Author   : Bart Kuppens
+	Version  : 1.0
+	
+.PARAMETER Name
+	Specifies the name of the alias.
+		
+.PARAMETER SQLServerName
+	Specifies the name of the SQL Server.
+		
+.PARAMETER Port
+	Specifies the port.
+	
+.EXAMPLE
+	PS > Add-SQLServerAlias -Name "SHPDB" -SQLServerName "SRV-CTG-SQL01" -Port 1433
+#>
+
+[CmdletBinding()]
+param(
+	[parameter(Position=0,Mandatory=$true,ValueFromPipeline=$true,HelpMessage="Specifies the name of the alias.")]
+	[string]$Name,
+	[parameter(Position=1,Mandatory=$true,ValueFromPipeline=$false,HelpMessage="Specifies the name of the SQL Server.")]
+	[string]$SQLServerName,
+	[parameter(Position=2,Mandatory=$true,ValueFromPipeline=$false,HelpMessage="Specifies the port.")]
+	[string]$Port
+)	
+
+$hive = "localmachine"
+$key = "SOFTWARE\\Microsoft\\MSSQLServer\\Client\\ConnectTo"
+$key_32b = "SOFTWARE\\Wow6432Node\\Microsoft\\MSSQLServer\\Client\\ConnectTo"
+
+$reg = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]$hive, $env:COMPUTERNAME)
+$subkey = $reg.OpenSubKey($key, $true)
+$res = $subkey.GetValue($Name)
+if (!$res)
+{
+    $subkey.SetValue($Name,"DBMSSOCN,$SQLServerName,$Port")
+    Write-Output "Alias $Name created successfully for SQL Native Client 11.0 Configuration. "
+}
+else
+{
+    Write-Output "Alias $Name already exists in SQL Native Client 11.0 Configuration. "
+}
+$reg.Close()
+
+$reg = [Microsoft.Win32.RegistryKey]::OpenRemoteBaseKey([Microsoft.Win32.RegistryHive]$hive, $env:COMPUTERNAME)
+$subkey = $reg.OpenSubKey($key_32b, $true)
+$res = $subkey.GetValue($Name)
+if (!$res)
+{
+    $subkey.SetValue($Name,"DBMSSOCN,$SQLServerName,$Port")
+    Write-Output "Alias $Name created successfully for SQL Native Client 11.0 Configuration (32 bit)."
+}
+else
+{
+    Write-Output "Alias $Name already exists in SQL Native Client 11.0 Configuration (32 bit). "
+}
+$reg.Close() ]]></script>
+        <scriptargs>-Name ${option.ALIAS_NAME} -SQLServerName ${option.SERVER_IP} -Port ${option.PORT}</scriptargs>
+      </command>
+    </sequence>
+    <uuid>632a8335-2f4a-4686-a658-dd504c66f4b3</uuid>
+  </job>
+</joblist>

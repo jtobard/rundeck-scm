@@ -1,0 +1,96 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json' />
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: CRD configure
+- Check which MT is the cluster Master]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>CRDConfiguration</group>
+    <id>8bcff17b-2460-440a-8fd3-60bb844b61d3</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifyClusterMaster</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags: Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify Cluster Master</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[[CmdletBinding()]
+param(
+	[string]$clientcode
+)
+$serverapps_table = @{}
+$cm_one = $false
+$cm_two = $false
+$serverapps = Get-ChildItem "D:\CharlesRiver"| Where-Object {$_.PSIsContainer -and $_.Name -like "serverapps*"}| ForEach-Object { $_.Name }
+
+foreach ($serverapp in $serverapps){
+    $arr = @()
+    $path = "D:\CharlesRiver\" + $serverapp + "\conf\server.xml"
+    $pattern = "(?!\B--[^--]*)DatabaseName=(.*?);(?![^--]*--\B)"
+    Get-Content $path | Foreach {if ([Regex]::IsMatch($_, $pattern)) { $arr += [Regex]::Match($_, $pattern).groups}}
+    $serverapps_table.Add($serverapp, $arr[1].Value)
+}
+
+$serverapps01 = $serverapps_table.serverapps01
+$serverapps02 = $serverapps_table.serverapps02
+$serverapps03 = $serverapps_table.serverapps03
+
+if ($serverapps01 -eq $clientcode + "_DEV1_MAIN" -and $serverapps03 -eq $clientcode + "_DEV1_MAIN"){
+   $cm = Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "use [$serverapps01] select PARAM_VAL from PDF_MBEAN_CONFIG where PARAM_NAME = 'crd:jmsconfig/hostserver'" -ErrorAction Stop
+   $cm_digit = $cm[0].Substring($cm[0].Length - 4)
+   if($cm_digit -eq "8081"){
+        Write-Host "Both cluster master on serverapps01 and serverapps03 are set to" $cm[0]
+        $cm_one = $true
+    }
+   else{
+        Write-Host "cluster master on serverapps01 and serverapps03 are not set to 8081"
+        $cm_one = $false
+    }
+}
+else{
+    Write-Host "Waring: Serverapps01 and serverapps03 are targeting different database!!!!!!!!!"
+}
+
+
+if ($serverapps02 -eq $clientcode + "_DEV2_MAIN"){
+   $cm = Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "use [$serverapps02] select PARAM_VAL from PDF_MBEAN_CONFIG where PARAM_NAME = 'crd:jmsconfig/hostserver'" -ErrorAction Stop
+   $cm_digit = $cm[0].Substring($cm[0].Length - 4)
+   if($cm_digit -eq "8082"){
+        Write-Host "Cluster master on serverapps02 is set to" $cm[0]
+        $cm_two = $true
+    }
+   else{
+        Write-Host "cluster master on serverapps02 is not set to 8082"
+        $cm_two = $false
+    }
+}
+else{
+    Write-Host "Waring: Serverapps02 is targeting different database!!!!!!!!!"
+}
+
+if ($cm_one -and $cm_two) {
+    exit 0
+}else{
+    exit 1
+}]]></script>
+        <scriptargs>-clientcode ${option.CLIENT_CODE}</scriptargs>
+      </command>
+    </sequence>
+    <uuid>8bcff17b-2460-440a-8fd3-60bb844b61d3</uuid>
+  </job>
+</joblist>

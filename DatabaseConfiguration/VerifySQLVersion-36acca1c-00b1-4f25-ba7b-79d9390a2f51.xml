@@ -1,0 +1,46 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 65
+Test DB: verify expected SQL version: 12.0.5546.0 (2014 WEB EDITION SP2 CU5)]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>36acca1c-00b1-4f25-ba7b-79d9390a2f51</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifySQLVersion</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify expected SQL version</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[write-host "Checking SQL Version"
+
+$sqlVersion = Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "SELECT SERVERPROPERTY('productversion');"
+
+if ($sqlVersion[0] -eq "12.0.5546.0")
+{   
+    Write-Host "Expected SQL version. Current Version is 12.0.5546.0. "
+    exit 0
+}
+else
+{
+    Write-Host "Unexpected SQL version. Current Version is" $sqlVersion[0] 
+    exit 1
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>36acca1c-00b1-4f25-ba7b-79d9390a2f51</uuid>
+  </job>
+</joblist>

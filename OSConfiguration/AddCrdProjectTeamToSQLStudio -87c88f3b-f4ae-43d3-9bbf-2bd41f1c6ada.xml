@@ -1,0 +1,59 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json'>
+          <description>Client Code</description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 62
+On Test vm,
+Add the CRD Project Team AD group to the logins in SQL Studio (Security -> Logins).
+Give the AD security group the Public membership only]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>87c88f3b-f4ae-43d3-9bbf-2bd41f1c6ada</id>
+    <loglevel>INFO</loglevel>
+    <name>AddCrdProjectTeamToSQLStudio </name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags: Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Add the CRD Project Team logins in SQL Studio</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "Declare @loginName VARCHAR(50)
+Declare @SqlStatement NVARCHAR(100)
+Set @loginName = '@option.CLIENT_CODE@';
+Set @SqlStatement = 
+    N'use [MASTER] create login [' + @loginName + '] From Windows with DEFAULT_DATABASE=[MASTER]';
+
+If not Exists (select name from sys.server_principals
+    where name = @loginName)
+Begin
+    print N'The login ' + @loginName + N' does not exist. Creating login now...'
+	EXEC sp_executesql @SqlStatement
+End
+
+If Exists (select name from sys.server_principals
+    where name = @loginName)
+	print N'The login ' + @loginName + N' has been created.'
+Else
+	RAISERROR('Failed to create login', 16, 1) WITH NOWAIT " -ErrorAction Stop -Verbose]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>87c88f3b-f4ae-43d3-9bbf-2bd41f1c6ada</uuid>
+  </job>
+</joblist>

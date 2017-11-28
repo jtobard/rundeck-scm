@@ -1,0 +1,70 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json' />
+        <option name='SADN_USERNAME' required='true' />
+        <option name='SADN_PASSWORD' required='true' secure='true' valueExposed='true' />
+      </options>
+    </context>
+    <description><![CDATA[Task_ID:90
+Login using the SADN-<client> account and the DNS entry for the server created in previous steps
+- at login, the reference data upgrade may start.  
+- when first run, it will detect that the cluster information in the db does not match the expected values. select "clear config". 
+- Select "Admin Tasks" > "DBMS Environment Check" and make sure green check icon appears
+]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>f1cd1735-4a95-41b1-ab79-fea708c7d624</id>
+    <loglevel>INFO</loglevel>
+    <name>RunDBadminClearconfig</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: "Automation Test Server"</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>DBadmin clearconfig on DEV1 Database</description>
+        <fileExtension>.bat</fileExtension>
+        <script><![CDATA[@if (@CodeSection == @Batch) @then
+@echo off
+CScript //nologo //E:JScript "%~F0
+d:
+cd D:\CharlesRiver\dbadmin
+
+CharlesRiverDbAdmin /cls:y /dbms:mss /s:"%computername%" /db:%RD_OPTION_CLIENT_CODE%_DEV1_MAIN /u:%RD_OPTION_SADN_USERNAME% /p:%RD_OPTION_SADN_PASSWORD% /log:debug /c:FULLUPD /o:CLSCCNF
+goto :EOF
+@end
+WScript.CreateObject("WScript.Shell").SendKeys("{Enter}");
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <description> DBadmin clearconfig on DEV2 Database</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[@if (@CodeSection == @Batch) @then
+@echo off
+CScript //nologo //E:JScript "%~F0
+d:
+cd D:\CharlesRiver\dbadmin
+
+CharlesRiverDbAdmin /cls:y /dbms:mss /s:"%computername%" /db:%RD_OPTION_CLIENT_CODE%_DEV2_MAIN /u:%RD_OPTION_SADN_USERNAME% /p:%RD_OPTION_SADN_PASSWORD% /log:debug /c:FULLUPD /o:CLSCCNF
+goto :EOF
+@end
+WScript.CreateObject("WScript.Shell").SendKeys("{Enter}");
+]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>f1cd1735-4a95-41b1-ab79-fea708c7d624</uuid>
+  </job>
+</joblist>

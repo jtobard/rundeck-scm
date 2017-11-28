@@ -1,0 +1,93 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='CADN_USERNAME' required='true' />
+        <option name='PASSWORD' required='true' secure='true' valueExposed='true' />
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 103
+
+Using the client login to each middle tier including the 8087 MMT.
+ 
+Use the CADN-<ENV>-<CLIENT CODE> account to access each MT.
+ 
+Once logged in open the blotter in each instance to verify the MT is functioning correctly.
+ 
+If it is not working then run CRD configure again.]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>TemplateConversionDatabaseSetup</group>
+    <id>cca18425-ff29-4b40-a3fd-23e3031ac9d0</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifyLoginToMTs</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify Login To MTs</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[$username = "@option.CADN_USERNAME@"
+$password = "@option.PASSWORD@"
+Write-Host "******** Start Verify Login To MTs ********"
+$ie = New-Object -com InternetExplorer.Application
+$mtports = Get-ChildItem -Recurse "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Charles River*\" | where-Object { $_.PSIsContainer -and $_.Name.StartsWith("Middle Tier port")} 
+if ($ie -ne $null)
+{
+    $ie.visible=$false
+    foreach($mtport in $mtports){
+        $mtport = $mtport.Name -replace '\D+'
+        $ie.navigate("https://localhost:$mtport/crts/") 
+        while($ie.ReadyState -ne 4) {start-sleep -m 100}
+        if ($ie.document.url -Match "invalidcert")
+        {
+            "Bypassing SSL Certificate Error Page"
+            $sslbypass=$ie.Document.getElementsByTagName("a") | where-object {$_.id -eq "overridelink"}
+            $sslbypass.click()
+            "sleep for 5 seconds while final page loads"
+            start-sleep -s 5
+        }
+        if ($ie.document.IHTMLDocument3_getElementById("j_username") -ne $null -or $ie.document.IHTMLDocument3_getElementById("j_password") -ne $null -or $ie.document.IHTMLDocument3_getElementById("loginButton") -ne $null)
+        {
+            $ie.document.IHTMLDocument3_getElementById("j_username").value = "$username"
+            $ie.document.IHTMLDocument3_getElementById("j_password").value = "$password"
+            $ie.document.IHTMLDocument3_getElementById("loginButton").click()
+            start-sleep 10
+        }
+        $logout = $ie.Document.body.getElementsByTagName("li") | Where {$_.InnerText -like "Log Out"}
+        if($logout -ne $null -and $logout.innerText -like "Log Out")
+        {
+            Write-Host "User Login to Middle Tier $mtport Successfully."
+        }
+        else
+        {
+            Write-Host "User Login to Middle Tier $mtport Failed ! "
+            $ie.Quit()
+            exit 1
+        }
+
+    }
+    $ie.Quit()
+}
+else{
+    Write-Host "Can't init IE COM Object!"
+    exit 1
+}
+
+]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>cca18425-ff29-4b40-a3fd-23e3031ac9d0</uuid>
+  </job>
+</joblist>

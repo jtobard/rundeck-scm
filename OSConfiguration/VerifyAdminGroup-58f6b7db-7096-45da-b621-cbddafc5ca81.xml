@@ -1,0 +1,54 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option enforcedvalues='true' name='TAG_NAME' required='true' valuesUrl='file:/rundeckpro/optionProviders/tags.json'>
+          <description>This is resource tagname</description>
+        </option>
+        <option name='REMOTE_HOST' required='true' valuesUrl='file:/rundeckpro/optionProviders/${option.TAG_NAME.value}.json'>
+          <description>This is remote host name</description>
+        </option>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json'>
+          <description>This is client code</description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 60
+Ansible Playbook does the following
+1. Verify Admin Group
+If present, remove "Domain Admins" from local admins group and replace with 
+"CRD Managed Services" 
+"CRD Technology Services"
+"CRD FIX Team"
+"CRD_SQL_PROXY"
+"Ansible-SVC"
+"rundeck-domain"
+"sqlservicedev" - Test servers only
+"sqlservice" - Prod/DR servers only]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>58f6b7db-7096-45da-b621-cbddafc5ca81</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifyAdminGroup</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: "Ansible 2.4"</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Playbook for verifying admin group</description>
+        <exec>sudo ansible-playbook /etc/ansible/playbooks/Infra/VMCC/VerifyAdminGroup.yml --extra-vars "remote_host=${option.REMOTE_HOST} client_code=${option.CLIENT_CODE}"</exec>
+      </command>
+    </sequence>
+    <uuid>58f6b7db-7096-45da-b621-cbddafc5ca81</uuid>
+  </job>
+</joblist>

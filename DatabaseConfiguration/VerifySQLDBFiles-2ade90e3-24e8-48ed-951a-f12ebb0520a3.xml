@@ -1,0 +1,58 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json'>
+          <description>Client Code</description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 66
+verify SQL db files installed on D:]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>2ade90e3-24e8-48ed-951a-f12ebb0520a3</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifySQLDBFiles</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify SQL DB Files</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[write-host "Create Temp Database @option.CLIENT_CODE@_DEV1_MAIN"
+
+Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N' @option.CLIENT_CODE@_DEV1_MAIN') CREATE DATABASE [@option.CLIENT_CODE@_DEV1_MAIN]"
+
+$checkMDF = test-path "D:\MSSQL\Data\@option.CLIENT_CODE@_DEV1_MAIN.mdf"
+$checkLDF = test-path "D:\MSSQL\Log\@option.CLIENT_CODE@_DEV1_MAIN_log.ldf"
+
+if ($checkMDF -eq $true -and $checkLDF -eq $true)
+{   
+    Write-Host "Both @option.CLIENT_CODE@_DEV1_MAIN.mdf and @option.CLIENT_CODE@_DEV1_MAIN.ldf are existed."
+    Write-Host "Deleting Database @option.CLIENT_CODE@_DEV1_MAIN."
+    Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'@option.CLIENT_CODE@_DEV1_MAIN' ) BEGIN DROP DATABASE [@option.CLIENT_CODE@_DEV1_MAIN] END ELSE PRINT N'@option.CLIENT_CODE@_DEV1_MAIN is not exist'"
+    exit 0
+}
+else
+{
+    Write-Host "@option.CLIENT_CODE@_DEV1_MAIN.mdf or @option.CLIENT_CODE@_DEV1_MAIN.ldf has not been created ! "
+    exit 1
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>2ade90e3-24e8-48ed-951a-f12ebb0520a3</uuid>
+  </job>
+</joblist>

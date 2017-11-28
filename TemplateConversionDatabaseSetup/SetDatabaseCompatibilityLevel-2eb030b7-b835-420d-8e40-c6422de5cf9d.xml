@@ -1,0 +1,43 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json'>
+          <description>Client Code</description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 82
+Set Database Compatibility Level to 120]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>TemplateConversionDatabaseSetup</group>
+    <id>2eb030b7-b835-420d-8e40-c6422de5cf9d</id>
+    <loglevel>INFO</loglevel>
+    <name>SetDatabaseCompatibilityLevel</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Set Compatibility level to 120</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[sqlcmd -S %computername% -Q "ALTER DATABASE %RD_OPTION_CLIENT_CODE%_DEV1_MAIN SET COMPATIBILITY_LEVEL = 120;" 
+sqlcmd -S %computername% -Q "ALTER DATABASE %RD_OPTION_CLIENT_CODE%_DEV2_MAIN SET COMPATIBILITY_LEVEL = 120;" 
+echo "Compatibility Level has been set to 120"
+]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>2eb030b7-b835-420d-8e40-c6422de5cf9d</uuid>
+  </job>
+</joblist>

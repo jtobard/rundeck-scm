@@ -1,0 +1,43 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 37
+verify smtp outbound relay]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>4388c746-7547-4765-8297-2264195319e2</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifySMTPOutboundRelay</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,17R1</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>send email 2</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[Write-Host "Start Sending Email....."
+Send-MailMessage -To "CRDTechnologyServices@crd.com" -From “noreply@crd.com" -SMTPServer localhost -Subject "[VM-Checkout-Rundeck] SMTP Test" -Body “Test SMTP sent from localhost!!"
+If($? -eq $true){
+    Write-Host "Send Email Successfully Through SMTP!!"
+    Exit 0
+}else{
+    $ErrorMessage = $_.Exception.Message
+    Write-Host "Unable to Send Email Through SMTP!!"
+    Write-Error $ErrorMessage
+    Exit 1
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>4388c746-7547-4765-8297-2264195319e2</uuid>
+  </job>
+</joblist>

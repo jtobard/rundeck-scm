@@ -1,0 +1,43 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='TAG_NAME' required='true' valuesUrl='file:/rundeckpro/optionProviders/tags.json' />
+        <option name='REMOTE_HOST' required='true' valuesUrl='file:/rundeckpro/optionProviders/${option.TAG_NAME.value}.json' />
+        <option name='SQLSERVICE_ACCT' required='true' value='sqlserviceDEV@crdrs.local' />
+        <option name='PASSWORD' required='true' secure='true' value='9irPHsf3' valueExposed='true' />
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 74
+
+Prod: crdrs\sqlservice
+Test: crdrs\sqlservicedev
+ 
+In all cases, it should never be "local"]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>e242aa1b-2718-4074-8158-5acbef00408c</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifyWinServiceSQLLogon</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: Ansible</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify Win Service SQL Logon</description>
+        <exec>sudo ansible-playbook /etc/ansible/playbooks/Infra/VMCC/VerifyWinSrvForLogon.yml --extra-vars "remote_host=${option.REMOTE_HOST} sqlsrvacct=${option.SQLSERVICE_ACCT} pwd=${option.PASSWORD}"</exec>
+      </command>
+    </sequence>
+    <uuid>e242aa1b-2718-4074-8158-5acbef00408c</uuid>
+  </job>
+</joblist>

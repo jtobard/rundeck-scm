@@ -1,0 +1,51 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 92
+Set system variables for encryption on MT host
+
+PC Properties > Advanced System Settings > Environment Variables > System variables
+ 
+Set the following:
+ 
+JAVA_OPTS = -Djsse.enableCBCProtection=false
+PERL_INLINE_JAVA_EXTRA_JAVA_ARGS = -Djsse.enableCBCProtection=false]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>TemplateConversionDatabaseSetup</group>
+    <id>a6129f99-311b-4b6b-a128-a00ee57aa4c3</id>
+    <loglevel>INFO</loglevel>
+    <name>SetEnvVarforEncryption</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Set system variables for encryption on MT host</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[if($env:JAVA_OPTS -eq "-Djsse.enableCBCProtection=false" -and $env:PERL_INLINE_JAVA_EXTRA_JAVA_ARGS -eq "-Djsse.enableCBCProtection=false")
+{
+    Write-Host "JAVA_OPTS and PERL_INLINE_JAVA_EXTRA_JAVA_ARGS have been setup correctly"
+    exit 0
+}else
+{
+    Write-Host "JAVA_OPTS and PERL_INLINE_JAVA_EXTRA_JAVA_ARGS are not correct"
+    Write-Host "Reseting JAVA_OPTS to -Djsse.enableCBCProtection=false and PERL_INLINE_JAVA_EXTRA_JAVA_ARGS to -Djsse.enableCBCProtection=false"
+    [Environment]::SetEnvironmentVariable("JAVA_OPTS", "-Djsse.enableCBCProtection=false", "Machine")
+    [Environment]::SetEnvironmentVariable("PERL_INLINE_JAVA_EXTRA_JAVA_ARGS", "-Djsse.enableCBCProtection=false", "Machine")
+    exit 0
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>a6129f99-311b-4b6b-a128-a00ee57aa4c3</uuid>
+  </job>
+</joblist>

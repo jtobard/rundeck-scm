@@ -1,0 +1,157 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option enforcedvalues='true' name='TAG_NAME' required='true' valuesUrl='file:/rundeckpro/optionProviders/tags.json' />
+        <option name='REMOTE_HOST' required='true' valuesUrl='file:/rundeckpro/optionProviders/${option.TAG_NAME.value}.json'>
+          <description>Remote Host Name</description>
+        </option>
+        <option name='ALIAS_NAME' required='true'>
+          <description><![CDATA[                    For Task_ID: 47: Add SQL Aliases within SQL Server Configuration Manager
+Should be DNS entry that has been put in place for the server 
+i.e <CLIENT CODE>-<ENV><NUMBER>.ms.crd.com for example crd-t1.ms.crd.com]]></description>
+        </option>
+        <option name='SERVER_IP' required='true'>
+          <description>                For Task_ID: 47: Add SQL Aliases within SQL Server Configuration Manager</description>
+        </option>
+        <option name='PORT' required='true'>
+          <description>                For Task_ID: 47: Add SQL Aliases within SQL Server Configuration Manager</description>
+        </option>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json'>
+          <description>                    For STEP 63: Install Cisco Tidal agent and run as domain account</description>
+        </option>
+        <option name='PASSWORD' required='true' secure='true' valueExposed='true'>
+          <description>                For STEP 63: Install Cisco Tidal agent and run as domain account - Tidal Agent Password</description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[Version: 17R1
+                <Workflow - OSConfiguration>
+                            This job is designed to run all the steps under OSConfiguration
+
+What is included in this workflow?
+===============================================================================
+
+ 56. Disable OS update notifications
+ 57. Verify smtp outbound relay
+ 58. Verify ftp access from vm to ftp.crd.com (client vm's only)
+ 59. Verify SNMP service is installed & running 
+ 60. Verify that FTP services NOT available
+ 61. Disable IIS default site
+ 63. Install Cisco Tidal agent and run as domain account
+ 70. Verify that standard utilities with latest versions are installed ***VERIFY ALL UTILITIES ARE ON THE SERVER & ARE UP-TO-DATE***
+ 72. Install Updated SQL Drivers
+ 84. Test VM: verify Remote Desktop Services configured
+]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>5a108ce1-9d1f-4f69-a0c3-3c426f6692fd</id>
+    <loglevel>INFO</loglevel>
+    <name>Workflow-OSConfiguration</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: Ansible</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <jobref group='OSConfiguration' name='VerifyClassicShellinstalled'>
+          <nodefilters>
+            <filter>hostname:${option.REMOTE_HOST}</filter>
+          </nodefilters>
+        </jobref>
+      </command>
+      <command>
+        <description>Disable OS Update Notifications </description>
+        <jobref group='OSConfiguration' name='DisableOSUpdateNotifications' nodeStep='true'>
+          <arg line='-REMOTE_HOST ${option.REMOTE_HOST} -TAG_NAME ${option.TAG_NAME}' />
+        </jobref>
+      </command>
+      <command>
+        <description>Verify SMTP Outbound Relay</description>
+        <jobref group='OSConfiguration' name='VerifySMTPOutboundRelay'>
+          <nodefilters>
+            <filter>hostname:${option.REMOTE_HOST}</filter>
+          </nodefilters>
+        </jobref>
+      </command>
+      <command>
+        <description>Verify FTP Access</description>
+        <jobref group='OSConfiguration' name='VerifyFTPAccess' nodeStep='true'>
+          <arg line='-REMOTE_HOST ${option.REMOTE_HOST} -TAG_NAME ${option.TAG_NAME}' />
+        </jobref>
+      </command>
+      <command>
+        <description>Verify SNMP-FTP-IIS Services</description>
+        <jobref group='OSConfiguration' name='VerifySNMP-FTP-IISServices'>
+          <arg line='-REMOTE_HOST ${option.REMOTE_HOST} -TAG_NAME ${option.TAG_NAME}' />
+        </jobref>
+      </command>
+      <command>
+        <description>Install Tidal Agent and run as domain account</description>
+        <jobref group='OSConfiguration' name='InstallTidalAgent'>
+          <arg line='-REMOTE_HOST ${option.REMOTE_HOST} -CLIENT_CODE ${option.CLIENT_CODE} -PASSWORD ${option.PASSWORD} -TAG_NAME ${option.TAG_NAME}' />
+        </jobref>
+      </command>
+      <command>
+        <description>Add SQL Aliases</description>
+        <jobref group='OSConfiguration' name='Add SQL Aliases within SQL Server Configuration Manager' nodeStep='true'>
+          <arg line='-ALIAS_NAME ${option.ALIAS_NAME} -SERVER_IP ${option.SERVER_IP} -PORT ${option.PORT}' />
+        </jobref>
+      </command>
+      <command>
+        <description>Verify Utilities Are Installed</description>
+        <jobref group='OSConfiguration' name='VerifyUtilitiesAreInstalled'>
+          <nodefilters>
+            <filter>hostname:${option.REMOTE_HOST}</filter>
+          </nodefilters>
+        </jobref>
+      </command>
+      <command>
+        <jobref group='OSConfiguration' name='VerifySSMSInstalled'>
+          <nodefilters>
+            <filter>hostname:${option.REMOTE_HOST}</filter>
+          </nodefilters>
+        </jobref>
+      </command>
+      <command>
+        <description>Install Updated SQL Drivers</description>
+        <jobref group='OSConfiguration' name='InstallUpdatedSQLDrivers'>
+          <arg line='-REMOTE_HOST ${option.REMOTE_HOST} -TAG_NAME ${option.TAG_NAME}' />
+        </jobref>
+      </command>
+      <command>
+        <description>Verify Admin Group</description>
+        <jobref group='OSConfiguration' name='VerifyAdminGroup' nodeStep='true'>
+          <arg line='-TAG_NAME ${option.TAG_NAME} -REMOTE_HOST ${option.REMOTE_HOST} -CLIENT_CODE ${option.CLIENT_CODE}' />
+          <nodefilters>
+            <filter>name: "Ansible 2.4"</filter>
+          </nodefilters>
+        </jobref>
+      </command>
+      <command>
+        <description>Add Crd Project Team To SQL Studio </description>
+        <jobref group='OSConfiguration' name='AddCrdProjectTeamToSQLStudio ' nodeStep='true'>
+          <arg line='-CLIENT_CODE ${option.CLIENT_CODE}' />
+        </jobref>
+      </command>
+      <command>
+        <description>Verify Remote Desktop Services Configured</description>
+        <jobref group='OSConfiguration' name='VerifyRemoteDesktopServicesConfigured'>
+          <nodefilters>
+            <filter>hostname:${option.REMOTE_HOST}</filter>
+          </nodefilters>
+        </jobref>
+      </command>
+    </sequence>
+    <uuid>5a108ce1-9d1f-4f69-a0c3-3c426f6692fd</uuid>
+  </job>
+</joblist>

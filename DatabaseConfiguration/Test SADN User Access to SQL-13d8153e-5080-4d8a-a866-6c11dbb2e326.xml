@@ -1,0 +1,63 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='DATABASE_NAME' required='true' />
+        <option name='SADN_USERNAME' required='true' />
+        <option name='SADN_PASSWORD' required='true' secure='true' valueExposed='true' />
+      </options>
+    </context>
+    <description>Task_ID:88</description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>13d8153e-5080-4d8a-a866-6c11dbb2e326</id>
+    <loglevel>INFO</loglevel>
+    <name>Test SADN User Access to SQL</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>.*</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify SADN Username and Password</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[function Test-SQLConnection
+{    
+    [OutputType([bool])]
+    Param
+    (
+        [Parameter(Mandatory=$true,
+                    ValueFromPipelineByPropertyName=$true,
+                    Position=0)]
+        $ConnectionString
+    )
+    try
+    {
+        $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $ConnectionString;
+        $sqlConnection.Open();
+        $sqlConnection.Close();
+
+        return $true;
+    }
+    catch
+    {
+        return $false;
+    }
+}
+
+Test-SQLConnection "Data Source=localhost;database=@option.DATABASE_NAME@;User ID=@option.SADN_USERNAME@;Password=@option.SADN_PASSWORD@;"]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>13d8153e-5080-4d8a-a866-6c11dbb2e326</uuid>
+  </job>
+</joblist>

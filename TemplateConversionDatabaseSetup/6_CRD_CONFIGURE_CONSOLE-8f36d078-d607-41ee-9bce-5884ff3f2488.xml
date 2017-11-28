@@ -1,0 +1,89 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='CLIENT_CODE' required='true' valuesUrl='file:/rundeckpro/optionProviders/ClientCodes.json'>
+          <description>clientcode here</description>
+        </option>
+        <option name='DBMS_SERVERNAME' required='true' />
+        <option name='DATABASE_NAME_MT1_MT3' required='true'>
+          <description>Please enter database for MT1 and MT3</description>
+        </option>
+        <option name='PORT_MT1_MT3' required='true' />
+        <option name='SADN_PASSWORD' required='true' secure='true' valueExposed='true'>
+          <description>Enter your SADN password</description>
+        </option>
+        <option name='SADN_USERNAME' required='true'>
+          <description>Enter your DatabaseUserName</description>
+        </option>
+        <option name='CLUSTER_MASTER_MT1_MT3' required='true'>
+          <description>cluster master for MT1 and MT3</description>
+        </option>
+        <option name='MANAGER_PORT_MT1_MT3' required='true'>
+          <description>manager port for MT1 and MT3</description>
+        </option>
+        <option name='SERVER_ID' required='true' />
+        <option name='TCP_PORT_MT1_MT3' required='true'>
+          <description>TCP port for MT1 and MT3</description>
+        </option>
+      </options>
+    </context>
+    <description>this will run the script to configure crd_config</description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>TemplateConversionDatabaseSetup</group>
+    <id>8f36d078-d607-41ee-9bce-5884ff3f2488</id>
+    <loglevel>INFO</loglevel>
+    <name>6_CRD_CONFIGURE_CONSOLE</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:17R1,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='node-first'>
+      <command>
+        <description>run console configure 1</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[D:\CharlesRiver\serverapps01\bin\crd_configure.bat --console < \\172.30.26.83\d$\tmp\%RD_OPTION_CLIENT_CODE%_crd_config_setting_part1.txt
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <description>run console configure 2</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[D:\CharlesRiver\serverapps01\bin\crd_configure.bat --console < \\172.30.26.83\d$\tmp\%RD_OPTION_CLIENT_CODE%_crd_config_setting_part2.txt
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <description>run console configure 3</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[D:\CharlesRiver\serverapps01\bin\crd_configure.bat --console < \\172.30.26.83\d$\tmp\%RD_OPTION_CLIENT_CODE%_crd_config_setting_part3.txt
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <description>run console configure 4</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[D:\CharlesRiver\serverapps01\bin\crd_configure.bat --console < \\172.30.26.83\d$\tmp\%RD_OPTION_CLIENT_CODE%_crd_config_setting_part4.txt
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <description>run console configure 5</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[D:\CharlesRiver\serverapps01\bin\crd_configure.bat --console < \\172.30.26.83\d$\tmp\%RD_OPTION_CLIENT_CODE%_crd_config_setting_part5.txt
+]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>8f36d078-d607-41ee-9bce-5884ff3f2488</uuid>
+  </job>
+</joblist>

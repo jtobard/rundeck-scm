@@ -1,0 +1,37 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 79
+Test DB:delete the CRD_* db's]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>TemplateConversionDatabaseSetup</group>
+    <id>e5b8650b-bdb3-4277-81a7-1c1f3637abf5</id>
+    <loglevel>INFO</loglevel>
+    <name>DeleteCRD_Database</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>delete CRD_* databases</description>
+        <fileExtension>bat</fileExtension>
+        <script><![CDATA[sqlcmd -S %computername% -Q "IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'ICD_DEV_MAIN' ) BEGIN PRINT N'Deleted ICD_DEV_MAIN' DROP DATABASE [ICD_DEV_MAIN] END ELSE PRINT N'ICD_DEV_MAIN is not exist'"
+
+sqlcmd -S %computername% -Q "IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'ICD_UAT_MAIN' ) BEGIN PRINT N'Deleted ICD_UAT_MAIN' DROP DATABASE [ICD_UAT_MAIN] END ELSE PRINT N'ICD_UAT_MAIN is not exist'"
+
+sqlcmd -S %computername% -Q "IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'ICD_STG_MAIN' ) BEGIN PRINT N'Deleted ICD_STG_MAIN' DROP DATABASE [ICD_STG_MAIN] END ELSE PRINT N'ICD_STG_MAIN is not exist'"]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>e5b8650b-bdb3-4277-81a7-1c1f3637abf5</uuid>
+  </job>
+</joblist>

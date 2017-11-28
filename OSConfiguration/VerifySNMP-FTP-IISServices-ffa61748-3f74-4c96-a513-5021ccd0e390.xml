@@ -1,0 +1,37 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='TAG_NAME' required='true' valuesUrl='file:/rundeckpro/optionProviders/tags.json' />
+        <option enforcedvalues='true' name='REMOTE_HOST' required='true' valuesUrl='file:/rundeckpro/optionProviders/${option.TAG_NAME.value}.json' />
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 39,40,41
+IIS role should be installed and FTP feature should not be. IIS should be running but default site disabled.]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>ffa61748-3f74-4c96-a513-5021ccd0e390</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifySNMP-FTP-IISServices</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: Ansible</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>OS Configuration Checks</description>
+        <exec>sudo ansible-playbook /etc/ansible/playbooks/OSconfiguration_1.yml --extra-vars "remote_host=${option.REMOTE_HOST}"</exec>
+      </command>
+    </sequence>
+    <uuid>ffa61748-3f74-4c96-a513-5021ccd0e390</uuid>
+  </job>
+</joblist>

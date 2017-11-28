@@ -1,0 +1,47 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 51
+Verify SQL Server Management Studio installed
+C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>ee7525fa-5870-462f-a787-f1a78c4a8e04</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifySSMSInstalled</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Confirm SQL Server Management Studio is Installed</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[write-host "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
+$ssms = test-path "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
+if ($ssms) {"1"} else {"0"}
+
+if ($ssms -eq $true)
+{   
+    Write-Host "SQL Server Management Studio is installed! "
+    exit 0
+}
+else
+{
+    Write-Host "SQL Server Management Studio is not installed! "
+    exit 1
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>ee7525fa-5870-462f-a787-f1a78c4a8e04</uuid>
+  </job>
+</joblist>

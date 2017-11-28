@@ -1,0 +1,46 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 76
+Verify database mode is "FULL" for Prod, "SIMPLE" for Test]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>91d4e930-61cc-4ef0-8e2a-e600678bfbad</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifyDatabaseModel</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify Database Model</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[write-host "Verify Database Model"
+
+$db_model = Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "SELECT recovery_model_desc FROM sys.databases WHERE name = 'model'"
+
+if ($db_model[0] -eq "SIMPLE")
+{   
+    Write-Host "Expected Database model for test environment:" $db_model[0]
+    exit 0
+}
+else
+{
+    Write-Host "Unexpected Database model for test environment:" $db_model[0]
+    exit 1
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>91d4e930-61cc-4ef0-8e2a-e600678bfbad</uuid>
+  </job>
+</joblist>

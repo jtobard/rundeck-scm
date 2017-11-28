@@ -1,0 +1,71 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option enforcedvalues='true' name='ACTION_STATUS' required='true' values='Add,Remove,Update'>
+          <description><![CDATA[The action you want to perform
+1. Add Nodes
+2. Update Nodes
+3. Remove Nodes]]></description>
+        </option>
+        <option name='FRIENDLY_NAME' required='true'>
+          <description><![CDATA[A friendly name to describe your node
+Example: ACAML 17R1 Test]]></description>
+        </option>
+        <option name='REMOTE_HOST' required='true'>
+          <description><![CDATA[Remote Hostname
+Example: 873766-bcmT2.crdrs.local]]></description>
+        </option>
+        <option name='NODE_DESCRIPTION' required='true'>
+          <description>Please describe your node</description>
+        </option>
+        <option delimiter=',' enforcedvalues='true' multivalued='true' name='TAG_NAME' required='true' valuesUrl='file:/rundeckpro/optionProviders/tags.json'>
+          <description>Tag name for rundeck resources to categorize hosts</description>
+        </option>
+        <option enforcedvalues='true' name='ANSIBLE_SECTION' required='true' values='linux,prod_appservers,upgradev17R1,upgradev17R2,upgradev96,upgradev97,upgradev98,vm_checkout'>
+          <description>Current ansible group</description>
+        </option>
+        <option name='UPDATE_HOSTNAME'>
+          <description><![CDATA[**If you need to rename your current hostname, please fill in the desired hostname.**
+**For example if you need to change 890615-tbd71P13.crdrs.local To 892315-OEW13P13.crdrs.local **
+**Otherwise, please leave it as blank**]]></description>
+        </option>
+        <option name='COMMIT_MESSAGE' required='true' />
+      </options>
+    </context>
+    <description>This job is to send request to add,update or remove single host in ansible host and Rundeck resources.xml</description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>ResourcesRequest</group>
+    <id>6e919344-b440-4c86-b302-644062b31c87</id>
+    <loglevel>INFO</loglevel>
+    <name>RequestNodesToResources</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: Ansible</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <notification>
+      <onfailure>
+        <email attachLog='true' recipients='WeijieLin@crd.com,MatthewTam@crd.com' subject='RUNDECK ${job.name} failure' />
+      </onfailure>
+      <onsuccess>
+        <email attachLog='true' recipients='WeijieLin@crd.com,MatthewTam@crd.com' subject='${option.ACTION_STATUS} Node Request from ${job.user.name}' />
+      </onsuccess>
+    </notification>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Add nodes to Rundeck resources and ansible host</description>
+        <exec>ansible-playbook /etc/ansible/playbooks/AddhostToResources.yml -e 'remote_name="${option.FRIENDLY_NAME}" remote_host=${option.REMOTE_HOST} remote_description="${option.NODE_DESCRIPTION}" rename_host=${option.UPDATE_HOSTNAME} remote_tag=${option.TAG_NAME} ansible_section=${option.ANSIBLE_SECTION} commit_message="${option.COMMIT_MESSAGE}" user=${job.user.name} action_status=${option.ACTION_STATUS}'</exec>
+      </command>
+    </sequence>
+    <uuid>6e919344-b440-4c86-b302-644062b31c87</uuid>
+  </job>
+</joblist>

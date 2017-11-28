@@ -1,0 +1,81 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 50
+Verify the standard utilities are installed]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>4a6df556-ab2d-47af-8dd5-4cee56555a7a</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifyUtilitiesAreInstalled</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify utilities installed</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[write-host "C:\Program Files\PuTTY\putty.exe"  
+$pu = Test-Path "C:\Program Files\PuTTY\putty.exe"
+if ($pu) {"1"} else {"0"}
+
+write-host "C:\Program Files\FileZilla FTP Client\filezilla.exe"  
+$fi = test-path "C:\Program Files\FileZilla FTP Client\filezilla.exe"
+if ($fi) {"1"} else {"0"}
+
+write-host "C:\Program Files (x86)\GnuWin32\bin\gzip.exe"  
+$gz = test-path "C:\Program Files (x86)\GnuWin32\bin\gzip.exe"
+if ($gz) {"1"} else {"0"}
+
+write-host "C:\Program Files (x86)\Notepad++\notepad++.exe"  
+$note = test-path "C:\Program Files (x86)\Notepad++\notepad++.exe"
+if ($note) {"1"} else {"0"}
+
+write-host "C:\Program Files (x86)\WinDirStat\windirstat.exe"  
+$windir = test-path "C:\Program Files (x86)\WinDirStat\windirstat.exe"
+if ($windir) {"1"} else {"0"}
+
+write-host "C:\Program Files (x86)\WinMerge\WinMergeU.exe"
+$winm = test-path "C:\Program Files (x86)\WinMerge\WinMergeU.exe"
+if ($winm) {"1"} else {"0"}
+
+write-host "C:\Program Files (x86)\GNU\GnuPG"
+$gnu = test-path "C:\Program Files (x86)\GNU\GnuPG"
+if ($gnu) {"1"} else {"0"}
+
+write-host "C:\Program Files\7-Zip\7zFM.exe"
+$7z = test-path "C:\Program Files\7-Zip\7zFM.exe"
+if ($7z) {"1"} else {"0"}
+
+write-host "C:\Program Files (x86)\WinSCP\WinSCP.exe"
+$wins = test-path "C:\Program Files (x86)\WinSCP\WinSCP.exe"
+if ($wins) {"1"} else {"0"}
+
+write-host "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
+$ssm = test-path "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe" 
+if ($ssm) {"1"} else {"0"}
+
+if ($pu -eq $true -and $fi -eq $true -and $gz -eq $true -and $note -eq $true -and $windir -eq $true -and $winm -eq $true -and $gnu -eq $true -and $7z -eq $true -and $wins -eq $true -and $ssm -eq $true)
+{   Write-Host "This job completed normally"
+exit 0
+}
+else
+{
+    Write-Host "This job completed abnormally"
+    exit 1
+    }]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>4a6df556-ab2d-47af-8dd5-4cee56555a7a</uuid>
+  </job>
+</joblist>

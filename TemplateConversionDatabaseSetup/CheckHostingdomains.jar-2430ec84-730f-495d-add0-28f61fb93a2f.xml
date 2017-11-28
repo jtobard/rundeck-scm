@@ -1,0 +1,57 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 97
+Confirm if the hostingdomains.jar file are located in
+D:\CharlesRiver\serverapps0x\lib
+
+If missing copy the file from \\crdrs\crims\LDAP to each serverapps\lib folder
+
+
+Test-Path "D:\CharlesRiver\serverapps01\lib\hostingdomains.jar"
+Test-Path "D:\CharlesRiver\serverapps02\lib\hostingdomains.jar"
+Test-Path "D:\CharlesRiver\serverapps03\lib\hostingdomains.jar"
+Test-Path "D:\CharlesRiver\serverapps04\lib\hostingdomains.jar"
+Test-Path "D:\CharlesRiver\serverapps05\lib\hostingdomains.jar"]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>TemplateConversionDatabaseSetup</group>
+    <id>2430ec84-730f-495d-add0-28f61fb93a2f</id>
+    <loglevel>INFO</loglevel>
+    <name>CheckHostingdomains.jar</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Check Hosting Domains.jar</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[$AllMTDirs = (Get-ChildItem "D:\CharlesRiver" | ?{ $_.PSIsContainer } | ?{$_.Name -like '*serverapps*'})
+
+foreach($dir in $AllMTDirs)
+{ 
+    Write-Host "D:\CharlesRiver\$dir\lib\hostingdomains.jar"
+    if (Test-Path "D:\CharlesRiver\$dir\lib\hostingdomains.jar")
+    {   
+        Write-Host "Files were found."
+    }
+        else
+    {
+        Write-Host "Files were not found. The files have now been copied over"
+        Copy-Item \\820963-USFS1\US1_Software\Utilities\hostingdomains.jar D:\CharlesRiver\$dir\lib
+    }
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>2430ec84-730f-495d-add0-28f61fb93a2f</uuid>
+  </job>
+</joblist>

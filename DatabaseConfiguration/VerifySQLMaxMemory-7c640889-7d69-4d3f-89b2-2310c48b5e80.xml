@@ -1,0 +1,46 @@
+<joblist>
+  <job>
+    <description><![CDATA[Task_ID: 68
+Test DB: Verify SQL max memory is set to 4G]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>DatabaseConfiguration</group>
+    <id>7c640889-7d69-4d3f-89b2-2310c48b5e80</id>
+    <loglevel>INFO</loglevel>
+    <name>VerifySQLMaxMemory</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>tags:CRIMS,Test</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>false</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Verify SQL max memory</description>
+        <fileExtension>ps1</fileExtension>
+        <script><![CDATA[write-host "Checking SQL Max Memory"
+
+$sqlMaxmemory = Invoke-Sqlcmd -ServerInstance $env:COMPUTERNAME -Query "SELECT value FROM sys.configurations WHERE name like '%max server memory%';"
+
+if ($sqlMaxmemory[0] -eq "4096")
+{   
+    Write-Host "SQL max memory is set to 4096M (4G) "
+    exit 0
+}
+else
+{
+    Write-Host "Unexpected SQL max memory. Currently is set to" $sqlMaxmemory[0] 
+    exit 1
+}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>7c640889-7d69-4d3f-89b2-2310c48b5e80</uuid>
+  </job>
+</joblist>

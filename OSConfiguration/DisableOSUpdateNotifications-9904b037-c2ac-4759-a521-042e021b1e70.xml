@@ -1,0 +1,66 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option enforcedvalues='true' name='TAG_NAME' required='true' valuesUrl='file:/rundeckpro/optionProviders/tags.json' />
+        <option name='REMOTE_HOST' required='true' valuesUrl='file:/rundeckpro/optionProviders/${option.TAG_NAME.value}.json'>
+          <description>Remote Host Name</description>
+        </option>
+        <option name='REGISTRY_PATH' required='true' value='HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'>
+          <description><![CDATA[Name of the registry path.
+Should be in one of the following registry hives: HKCC, HKCR, HKCU, HKLM, HKU.]]></description>
+        </option>
+        <option name='VALUE_NAME' required='true' value='ElevateNonAdmins'>
+          <description><![CDATA[Name of the registry entry in the above path parameters.
+If not provided, or empty then the '(Default)' property for the key will be used]]></description>
+        </option>
+        <option name='VALUE_DATA' required='true' value='0'>
+          <description>Value Data</description>
+        </option>
+        <option enforcedvalues='true' name='VALUE_TYPE' required='true' value='dword' values='binary,dword,expandstring,multistring,qword,string'>
+          <description><![CDATA[The registry value data type.
+*binary
+*dword
+*expandstring
+*multistring
+*string
+*qword
+
+aliases: datatype]]></description>
+        </option>
+      </options>
+    </context>
+    <description><![CDATA[Task_ID: 36
+Ansible Playbook does the following
+
+- run "gpedit.msc"
+- nav to: computer configuration > Administrative Templates > 
+     Windows Components > Windows Update 
+- for "Allow non-administrators to receive update notification"s, toggle to "Disabled"]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>OSConfiguration</group>
+    <id>9904b037-c2ac-4759-a521-042e021b1e70</id>
+    <loglevel>INFO</loglevel>
+    <name>DisableOSUpdateNotifications</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: Ansible</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Update Windows Registry</description>
+        <exec>sudo ansible-playbook /etc/ansible/playbooks/UpdateWinRegistry.yml --extra-vars "remote_host=${option.REMOTE_HOST} registry_path=${option.REGISTRY_PATH} value_name=${option.VALUE_NAME} value_data=${option.VALUE_DATA} value_type=${option.VALUE_TYPE}"</exec>
+      </command>
+    </sequence>
+    <uuid>9904b037-c2ac-4759-a521-042e021b1e70</uuid>
+  </job>
+</joblist>
