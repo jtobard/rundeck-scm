@@ -1,0 +1,28 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>9b5368b5-f8a2-4630-a51d-e6466456f6e4</id>
+    <loglevel>INFO</loglevel>
+    <name>testjob</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>.*</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo "hi"</exec>
+      </command>
+    </sequence>
+    <uuid>9b5368b5-f8a2-4630-a51d-e6466456f6e4</uuid>
+  </job>
+</joblist>
