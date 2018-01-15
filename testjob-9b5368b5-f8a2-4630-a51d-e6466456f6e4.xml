@@ -1,6 +1,16 @@
 <joblist>
   <job>
-    <description></description>
+    <context>
+      <options preserveOrder='true'>
+        <option name='inicio'>
+          <dateFormat />
+          <isDate>true</isDate>
+        </option>
+        <option name='lista' values='a,b,c' />
+        <option name='text' />
+      </options>
+    </context>
+    <description>test</description>
     <dispatch>
       <excludePrecedence>true</excludePrecedence>
       <keepgoing>false</keepgoing>
