@@ -1,15 +1,15 @@
 <joblist>
   <job>
-    <description>test change</description>
+    <description></description>
     <executionEnabled>true</executionEnabled>
-    <id>11ea85df-f5fc-4929-bee6-9930ec9b5412</id>
+    <id>460e1e3f-5aa3-46eb-b308-076d9ff0d337</id>
     <loglevel>INFO</loglevel>
-    <name>testjob</name>
+    <name>testjobB</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence>
       <command />
     </sequence>
-    <uuid>11ea85df-f5fc-4929-bee6-9930ec9b5412</uuid>
+    <uuid>460e1e3f-5aa3-46eb-b308-076d9ff0d337</uuid>
   </job>
 </joblist>
