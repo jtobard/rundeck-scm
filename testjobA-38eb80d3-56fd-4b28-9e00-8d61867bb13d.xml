@@ -1,0 +1,15 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>38eb80d3-56fd-4b28-9e00-8d61867bb13d</id>
+    <loglevel>INFO</loglevel>
+    <name>testjobA</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence>
+      <command />
+    </sequence>
+    <uuid>38eb80d3-56fd-4b28-9e00-8d61867bb13d</uuid>
+  </job>
+</joblist>
