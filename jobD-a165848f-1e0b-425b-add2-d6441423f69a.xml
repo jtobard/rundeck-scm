@@ -1,10 +1,10 @@
 <joblist>
   <job>
-    <description>modified job</description>
+    <description>test create</description>
     <executionEnabled>true</executionEnabled>
-    <id>0bd6eacb-87f2-4db0-8b4a-c034467cd805</id>
+    <id>a165848f-1e0b-425b-add2-d6441423f69a</id>
     <loglevel>INFO</loglevel>
-    <name>jobB</name>
+    <name>jobD</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
@@ -12,6 +12,6 @@
         <exec>echo "hi"</exec>
       </command>
     </sequence>
-    <uuid>0bd6eacb-87f2-4db0-8b4a-c034467cd805</uuid>
+    <uuid>a165848f-1e0b-425b-add2-d6441423f69a</uuid>
   </job>
 </joblist>
