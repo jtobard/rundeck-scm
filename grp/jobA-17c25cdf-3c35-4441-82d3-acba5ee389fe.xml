@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>grp</group>
+    <id>17c25cdf-3c35-4441-82d3-acba5ee389fe</id>
+    <loglevel>INFO</loglevel>
+    <name>jobA</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>fortune</exec>
+      </command>
+    </sequence>
+    <uuid>17c25cdf-3c35-4441-82d3-acba5ee389fe</uuid>
+  </job>
+</joblist>
