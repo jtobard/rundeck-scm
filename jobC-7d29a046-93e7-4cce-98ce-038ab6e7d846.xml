@@ -1,17 +1,17 @@
 <joblist>
   <job>
-    <description>test renamexx</description>
+    <description>test create</description>
     <executionEnabled>true</executionEnabled>
-    <id>1b3c7dc6-0dc4-4736-a23b-8b38b03ec9d4</id>
+    <id>7d29a046-93e7-4cce-98ce-038ab6e7d846</id>
     <loglevel>INFO</loglevel>
-    <name>jobE</name>
+    <name>jobC</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
       <command>
-        <exec>uname -a</exec>
+        <exec>echo "hi"</exec>
       </command>
     </sequence>
-    <uuid>1b3c7dc6-0dc4-4736-a23b-8b38b03ec9d4</uuid>
+    <uuid>7d29a046-93e7-4cce-98ce-038ab6e7d846</uuid>
   </job>
 </joblist>
