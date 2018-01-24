@@ -7,8 +7,10 @@
     <name>jobX</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
-    <sequence>
-      <command />
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo "hi"</exec>
+      </command>
     </sequence>
     <uuid>a165848f-1e0b-425b-add2-d6441423f69a</uuid>
   </job>
