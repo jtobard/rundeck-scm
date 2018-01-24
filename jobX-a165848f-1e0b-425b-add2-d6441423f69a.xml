@@ -1,16 +1,14 @@
 <joblist>
   <job>
-    <description>test create</description>
+    <description>test move</description>
     <executionEnabled>true</executionEnabled>
     <id>a165848f-1e0b-425b-add2-d6441423f69a</id>
     <loglevel>INFO</loglevel>
-    <name>jobD</name>
+    <name>jobX</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
-    <sequence keepgoing='false' strategy='node-first'>
-      <command>
-        <exec>echo "hi"</exec>
-      </command>
+    <sequence>
+      <command />
     </sequence>
     <uuid>a165848f-1e0b-425b-add2-d6441423f69a</uuid>
   </job>
