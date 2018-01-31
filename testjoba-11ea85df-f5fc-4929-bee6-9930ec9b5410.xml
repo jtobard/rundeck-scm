@@ -4,7 +4,7 @@
     <executionEnabled>true</executionEnabled>
     <id>11ea85df-f5fc-4929-bee6-9930ec9b5410</id>
     <loglevel>INFO</loglevel>
-    <name>testjob</name>
+    <name>testjoba</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
