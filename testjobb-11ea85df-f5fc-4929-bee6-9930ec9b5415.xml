@@ -2,7 +2,7 @@
   <job>
     <description>test import</description>
     <executionEnabled>true</executionEnabled>
-    <id>11ea85df-f5fc-4929-bee6-9930ec9b5412</id>
+    <id>11ea85df-f5fc-4929-bee6-9930ec9b5415</id>
     <loglevel>INFO</loglevel>
     <name>testjobb</name>
     <nodeFilterEditable>false</nodeFilterEditable>
@@ -12,6 +12,6 @@
         <exec>echo "hi"</exec>
       </command>
     </sequence>
-    <uuid>11ea85df-f5fc-4929-bee6-9930ec9b5412</uuid>
+    <uuid>11ea85df-f5fc-4929-bee6-9930ec9b5415</uuid>
   </job>
 </joblist>
