@@ -1,0 +1,38 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='opta'>
+          <dateFormat />
+          <description>test</description>
+          <isDate>true</isDate>
+        </option>
+      </options>
+    </context>
+    <description>description</description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>grp/subgrp</group>
+    <id>791dd21e-71ea-419d-bc1d-f8aec84805a1</id>
+    <loglevel>INFO</loglevel>
+    <name>jobingroup</name>
+    <nodeFilterEditable>true</nodeFilterEditable>
+    <nodefilters>
+      <filter>.*</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>uname -a</exec>
+      </command>
+    </sequence>
+    <uuid>791dd21e-71ea-419d-bc1d-f8aec84805a1</uuid>
+  </job>
+</joblist>
