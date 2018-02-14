@@ -5,7 +5,7 @@
         <option name='target' secure='true' valueExposed='true' />
       </options>
     </context>
-    <description>run another job</description>
+    <description>run another job.</description>
     <executionEnabled>true</executionEnabled>
     <id>5f7e1c49-5759-4f6b-ae76-a09d13a70f59</id>
     <loglevel>INFO</loglevel>
