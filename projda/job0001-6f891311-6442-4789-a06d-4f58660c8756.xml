@@ -1,0 +1,17 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>6f891311-6442-4789-a06d-4f58660c8756</id>
+    <loglevel>INFO</loglevel>
+    <name>job0001</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo "hi"</exec>
+      </command>
+    </sequence>
+    <uuid>6f891311-6442-4789-a06d-4f58660c8756</uuid>
+  </job>
+</joblist>
