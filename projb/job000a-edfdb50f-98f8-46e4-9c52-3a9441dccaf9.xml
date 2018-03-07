@@ -1,0 +1,17 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>edfdb50f-98f8-46e4-9c52-3a9441dccaf9</id>
+    <loglevel>INFO</loglevel>
+    <name>job000a</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <jobref name='job0001' project='demoB' />
+      </command>
+    </sequence>
+    <uuid>edfdb50f-98f8-46e4-9c52-3a9441dccaf9</uuid>
+  </job>
+</joblist>
