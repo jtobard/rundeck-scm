@@ -1,0 +1,17 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>0227f897-1b29-44ce-82cf-5906614ac74e</id>
+    <loglevel>INFO</loglevel>
+    <name>job002</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <jobref group='info' name='free' project='projb' />
+      </command>
+    </sequence>
+    <uuid>0227f897-1b29-44ce-82cf-5906614ac74e</uuid>
+  </job>
+</joblist>
