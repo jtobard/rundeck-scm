@@ -1,0 +1,17 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>437e15f3-9901-49dc-9ede-89376e0727ba</id>
+    <loglevel>INFO</loglevel>
+    <name>exampleE</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <jobref name='exampleA' project='test-a' />
+      </command>
+    </sequence>
+    <uuid>437e15f3-9901-49dc-9ede-89376e0727ba</uuid>
+  </job>
+</joblist>
