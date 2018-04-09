@@ -1,0 +1,17 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>10c5869a-e31a-4ed2-9890-3a871b9de0df</id>
+    <loglevel>INFO</loglevel>
+    <name>exampleQ</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>uname -a</exec>
+      </command>
+    </sequence>
+    <uuid>10c5869a-e31a-4ed2-9890-3a871b9de0df</uuid>
+  </job>
+</joblist>
