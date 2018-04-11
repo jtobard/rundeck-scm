@@ -1,6 +1,6 @@
 <joblist>
   <job>
-    <description></description>
+    <description>test</description>
     <executionEnabled>true</executionEnabled>
     <id>1cd643d6-2561-4141-bb15-377771410ef0</id>
     <loglevel>INFO</loglevel>
