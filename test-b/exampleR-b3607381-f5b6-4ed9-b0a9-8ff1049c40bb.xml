@@ -2,9 +2,9 @@
   <job>
     <description></description>
     <executionEnabled>true</executionEnabled>
-    <id>10c5869a-e31a-4ed2-9890-3a871b9de0df</id>
+    <id>b3607381-f5b6-4ed9-b0a9-8ff1049c40bb</id>
     <loglevel>INFO</loglevel>
-    <name>exampleQ</name>
+    <name>exampleR</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
@@ -12,6 +12,6 @@
         <exec>uname -a</exec>
       </command>
     </sequence>
-    <uuid>10c5869a-e31a-4ed2-9890-3a871b9de0df</uuid>
+    <uuid>b3607381-f5b6-4ed9-b0a9-8ff1049c40bb</uuid>
   </job>
 </joblist>
