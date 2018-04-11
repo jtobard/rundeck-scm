@@ -6,6 +6,12 @@
     <loglevel>INFO</loglevel>
     <name>exampleB</name>
     <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='12' minute='00' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
       <command>
