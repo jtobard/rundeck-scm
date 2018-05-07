@@ -1,0 +1,20 @@
+- description: ''
+  executionEnabled: true
+  id: 38239de0-9c90-4f89-a046-138214974267
+  loglevel: INFO
+  name: fortune
+  nodeFilterEditable: false
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: fortune
+    - configuration:
+        export: export
+        group: export
+        value: test
+      nodeStep: false
+      type: export-var
+    keepgoing: false
+    strategy: node-first
+  uuid: 38239de0-9c90-4f89-a046-138214974267
+

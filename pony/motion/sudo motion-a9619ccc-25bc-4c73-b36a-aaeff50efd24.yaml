@@ -1,0 +1,33 @@
+- description: ''
+  executionEnabled: true
+  group: motion
+  id: a9619ccc-25bc-4c73-b36a-aaeff50efd24
+  loglevel: INFO
+  name: sudo motion
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: false
+      rankOrder: ascending
+      successOnEmptyNodeFilter: true
+      threadcount: '1'
+    filter: 'name: wintermute'
+  nodesSelectedByDefault: true
+  schedule:
+    month: '*'
+    time:
+      hour: '19'
+      minute: '00'
+      seconds: '0'
+    weekday:
+      day: '*'
+    year: '*'
+  scheduleEnabled: false
+  sequence:
+    commands:
+    - exec: sudo motion
+    keepgoing: false
+    strategy: node-first
+  uuid: a9619ccc-25bc-4c73-b36a-aaeff50efd24
+

@@ -1,0 +1,21 @@
+- description: ''
+  executionEnabled: true
+  id: be551897-f251-45ab-b08f-6e0c3e079712
+  loglevel: INFO
+  name: Magic
+  nodeFilterEditable: false
+  options:
+  - name: x
+    required: true
+    value: '100'
+  - name: y
+    required: true
+    value: '100'
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: /Users/jtobar/bin/click -x ${option.x} -y ${option.y}
+    keepgoing: false
+    strategy: node-first
+  uuid: be551897-f251-45ab-b08f-6e0c3e079712
+

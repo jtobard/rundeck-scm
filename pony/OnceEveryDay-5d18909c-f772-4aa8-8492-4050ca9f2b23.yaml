@@ -1,0 +1,23 @@
+- description: ''
+  executionEnabled: false
+  id: 5d18909c-f772-4aa8-8492-4050ca9f2b23
+  loglevel: INFO
+  name: OnceEveryDay
+  nodeFilterEditable: false
+  schedule:
+    month: '*'
+    time:
+      hour: '19'
+      minute: '00'
+      seconds: '0'
+    weekday:
+      day: '*'
+    year: '*'
+  scheduleEnabled: false
+  sequence:
+    commands:
+    - exec: open -a uTorrent
+    keepgoing: false
+    strategy: node-first
+  uuid: 5d18909c-f772-4aa8-8492-4050ca9f2b23
+

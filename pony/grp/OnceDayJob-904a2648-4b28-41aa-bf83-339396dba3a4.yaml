@@ -1,0 +1,24 @@
+- description: ''
+  executionEnabled: true
+  group: grp
+  id: 904a2648-4b28-41aa-bf83-339396dba3a4
+  loglevel: INFO
+  name: OnceDayJob
+  nodeFilterEditable: false
+  schedule:
+    month: '*'
+    time:
+      hour: '18'
+      minute: '08'
+      seconds: '0'
+    weekday:
+      day: FRI,MON,THU,TUE,WED
+    year: '*'
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: killall Slack
+    keepgoing: false
+    strategy: node-first
+  uuid: 904a2648-4b28-41aa-bf83-339396dba3a4
+

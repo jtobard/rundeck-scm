@@ -1,0 +1,26 @@
+- description: ''
+  executionEnabled: true
+  id: b8ed7b5b-cac9-44eb-a543-e62423bdac3f
+  loglevel: INFO
+  name: doMagic2
+  nodeFilterEditable: false
+  schedule:
+    month: '*'
+    time:
+      hour: '8-18'
+      minute: 1/10
+      seconds: '0'
+    weekday:
+      day: FRI,MON,THU,TUE,WED
+    year: '*'
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - jobref:
+        args: -x 200 -y 1000
+        group: ''
+        name: Magic
+    keepgoing: false
+    strategy: node-first
+  uuid: b8ed7b5b-cac9-44eb-a543-e62423bdac3f
+

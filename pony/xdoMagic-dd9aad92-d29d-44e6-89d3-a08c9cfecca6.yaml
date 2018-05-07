@@ -1,0 +1,28 @@
+- defaultTab: summary
+  description: ''
+  executionEnabled: true
+  id: dd9aad92-d29d-44e6-89d3-a08c9cfecca6
+  loglevel: INFO
+  name: xdoMagic
+  nodeFilterEditable: false
+  options:
+  - name: x
+    required: true
+    value: '100'
+  - name: y
+    required: true
+    value: '99'
+  - name: test
+    values:
+    - a
+    - b
+    - c
+    - d
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: xdotool mousemove ${option.x} ${option.y} click 3
+    keepgoing: false
+    strategy: node-first
+  uuid: dd9aad92-d29d-44e6-89d3-a08c9cfecca6
+

@@ -1,0 +1,33 @@
+- description: ''
+  executionEnabled: true
+  id: 477fb09a-c0b0-4084-8ad6-40243186783b
+  loglevel: INFO
+  name: kill motion
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: false
+      rankOrder: ascending
+      successOnEmptyNodeFilter: true
+      threadcount: '1'
+    filter: 'name: wintermute'
+  nodesSelectedByDefault: true
+  schedule:
+    month: '*'
+    time:
+      hour: '11'
+      minute: '00'
+      seconds: '0'
+    weekday:
+      day: '*'
+    year: '*'
+  scheduleEnabled: false
+  sequence:
+    commands:
+    - exec: sudo killall motion
+    - exec: ps ax | grep motion
+    keepgoing: false
+    strategy: node-first
+  uuid: 477fb09a-c0b0-4084-8ad6-40243186783b
+

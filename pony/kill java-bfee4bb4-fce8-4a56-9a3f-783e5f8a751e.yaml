@@ -1,0 +1,23 @@
+- description: ''
+  executionEnabled: true
+  id: bfee4bb4-fce8-4a56-9a3f-783e5f8a751e
+  loglevel: INFO
+  name: kill java
+  nodeFilterEditable: false
+  schedule:
+    dayofmonth:
+      day: '20'
+    month: '10'
+    time:
+      hour: '19'
+      minute: '00'
+      seconds: '0'
+    year: '*'
+  scheduleEnabled: false
+  sequence:
+    commands:
+    - exec: killall java
+    keepgoing: false
+    strategy: node-first
+  uuid: bfee4bb4-fce8-4a56-9a3f-783e5f8a751e
+

@@ -1,0 +1,67 @@
+- defaultTab: summary
+  description: ''
+  executionEnabled: true
+  id: baad57ad-1e0b-4452-b1e3-0cbcd10a7bec
+  loglevel: INFO
+  name: every10minutesJob
+  nodeFilterEditable: false
+  schedule:
+    month: '*'
+    time:
+      hour: '9,10,11,12,13,14,15,16,17'
+      minute: 5/10
+      seconds: '0'
+    weekday:
+      day: FRI,MON,THU,TUE,WED
+    year: '*'
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: open -a Slack
+    - script: |
+        echo "#+-----------------------------------------------------------+
+        #|                                                           |
+        #|                                                           |
+        #|                              XXXX                         |
+        #|                            XXXXXXX                        |
+        #|                         XXX XX  XXX                       |
+        #|                        X  XXX   XX X                      |
+        #|                       X XXX       X X                     |
+        #|                      XX X            X                    |
+        #|                     XX             X XX                   |
+        #|                   XXX                  X                  |
+        #|                  XX                  X XX                 |
+        #|                XXX                   X  XX                |
+        #|                X                         X                |
+        #|               XX                       XX X               |
+        #|               XX                          XX              |
+        #|               XXX                         XXX             |
+        #|                XXX                         XXX            |
+        #|                  XX                         XXX           |
+        #|                   XX                        XXX           |
+        #|                    XX                    XXXX             |
+        #|                     XX               XXXX                 |
+        #|                      XX             XX                    |
+        #|                       XX          X                       |
+        #|                        XX       XX                        |
+        #|                         XX     XX                         |
+        #|                          XXXXXX                           |
+        #|                           XXX X                           |
+        #|                         XXXX   X                          |
+        #|                       XXXX      X                         |
+        #|                     XXXXX        X                        |
+        #|                   XXXX           XX                       |
+        #|                  XXX               X                      |
+        #|                XXX                  X                     |
+        #|              XXXX                    X                    |
+        #|            XXXX                       X                   |
+        #|           XXX                                       XXXX  |
+        #|                                        X        XXXX      |
+        #|                                          X   XXX          |
+        #|                                           XXX             |
+        #|                                                           |
+        #+-----------------------------------------------------------+" > /dev/null
+    keepgoing: false
+    strategy: node-first
+  uuid: baad57ad-1e0b-4452-b1e3-0cbcd10a7bec
+

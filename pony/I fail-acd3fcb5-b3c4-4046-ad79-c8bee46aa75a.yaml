@@ -1,0 +1,23 @@
+- description: ''
+  executionEnabled: true
+  id: acd3fcb5-b3c4-4046-ad79-c8bee46aa75a
+  loglevel: INFO
+  name: I fail
+  nodeFilterEditable: false
+  schedule:
+    dayofmonth:
+      day: '1'
+    month: '*'
+    time:
+      hour: '12'
+      minute: '28'
+      seconds: '0'
+    year: '*'
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: exit 1
+    keepgoing: false
+    strategy: node-first
+  uuid: acd3fcb5-b3c4-4046-ad79-c8bee46aa75a
+
