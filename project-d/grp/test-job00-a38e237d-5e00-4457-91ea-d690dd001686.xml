@@ -1,0 +1,19 @@
+<joblist>
+  <job>
+    <defaultTab>output</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>grp</group>
+    <id>a38e237d-5e00-4457-91ea-d690dd001686</id>
+    <loglevel>INFO</loglevel>
+    <name>test-job00</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo ${node.hostname}</exec>
+      </command>
+    </sequence>
+    <uuid>a38e237d-5e00-4457-91ea-d690dd001686</uuid>
+  </job>
+</joblist>
