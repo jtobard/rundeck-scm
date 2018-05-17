@@ -1,0 +1,25 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>grp</group>
+    <id>7914c6e3-fcb5-414f-b714-b3eb7310f640</id>
+    <loglevel>INFO</loglevel>
+    <name>exampleB</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='12' minute='00' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo "hi"</exec>
+      </command>
+    </sequence>
+    <uuid>7914c6e3-fcb5-414f-b714-b3eb7310f640</uuid>
+  </job>
+</joblist>
