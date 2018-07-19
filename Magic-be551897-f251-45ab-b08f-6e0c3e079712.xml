@@ -1,0 +1,23 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='x' required='true' value='100' />
+        <option name='y' required='true' value='100' />
+      </options>
+    </context>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>be551897-f251-45ab-b08f-6e0c3e079712</id>
+    <loglevel>INFO</loglevel>
+    <name>Magic</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>/Users/jtobar/bin/click -x ${option.x} -y ${option.y}</exec>
+      </command>
+    </sequence>
+    <uuid>be551897-f251-45ab-b08f-6e0c3e079712</uuid>
+  </job>
+</joblist>

@@ -1,0 +1,37 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>477fb09a-c0b0-4084-8ad6-40243186783b</id>
+    <loglevel>INFO</loglevel>
+    <name>kill motion</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: wintermute</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <schedule>
+      <month month='*' />
+      <time hour='11' minute='00' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>false</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>sudo killall motion</exec>
+      </command>
+      <command>
+        <exec>ps ax | grep motion</exec>
+      </command>
+    </sequence>
+    <uuid>477fb09a-c0b0-4084-8ad6-40243186783b</uuid>
+  </job>
+</joblist>
