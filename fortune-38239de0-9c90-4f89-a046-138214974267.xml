@@ -1,0 +1,26 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>38239de0-9c90-4f89-a046-138214974267</id>
+    <loglevel>INFO</loglevel>
+    <name>fortune</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>fortune</exec>
+      </command>
+      <command>
+        <step-plugin type='export-var'>
+          <configuration>
+            <entry key='export' value='export' />
+            <entry key='group' value='export' />
+            <entry key='value' value='test' />
+          </configuration>
+        </step-plugin>
+      </command>
+    </sequence>
+    <uuid>38239de0-9c90-4f89-a046-138214974267</uuid>
+  </job>
+</joblist>

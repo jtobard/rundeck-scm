@@ -1,0 +1,23 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>acd3fcb5-b3c4-4046-ad79-c8bee46aa75a</id>
+    <loglevel>INFO</loglevel>
+    <name>I fail</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <dayofmonth />
+      <month day='1' month='*' />
+      <time hour='12' minute='28' seconds='0' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>exit 1</exec>
+      </command>
+    </sequence>
+    <uuid>acd3fcb5-b3c4-4046-ad79-c8bee46aa75a</uuid>
+  </job>
+</joblist>

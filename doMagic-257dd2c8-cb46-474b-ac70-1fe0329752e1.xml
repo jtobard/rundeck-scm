@@ -1,0 +1,25 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>257dd2c8-cb46-474b-ac70-1fe0329752e1</id>
+    <loglevel>INFO</loglevel>
+    <name>doMagic</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='8-18' minute='0/10' seconds='0' />
+      <weekday day='FRI,MON,THU,TUE,WED' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <jobref name='Magic'>
+          <arg line='-x 200 -y 800' />
+        </jobref>
+      </command>
+    </sequence>
+    <uuid>257dd2c8-cb46-474b-ac70-1fe0329752e1</uuid>
+  </job>
+</joblist>

@@ -1,0 +1,25 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='x' required='true' value='100' />
+        <option name='y' required='true' value='99' />
+        <option name='test' values='a,b,c,d' />
+      </options>
+    </context>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>false</executionEnabled>
+    <id>dd9aad92-d29d-44e6-89d3-a08c9cfecca6</id>
+    <loglevel>INFO</loglevel>
+    <name>xdoMagic</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>xdotool mousemove ${option.x} ${option.y} click 3</exec>
+      </command>
+    </sequence>
+    <uuid>dd9aad92-d29d-44e6-89d3-a08c9cfecca6</uuid>
+  </job>
+</joblist>

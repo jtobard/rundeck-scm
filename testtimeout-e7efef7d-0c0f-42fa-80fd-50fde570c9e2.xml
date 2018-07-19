@@ -1,0 +1,24 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='timeout' required='true' />
+      </options>
+    </context>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>e7efef7d-0c0f-42fa-80fd-50fde570c9e2</id>
+    <loglevel>INFO</loglevel>
+    <name>testtimeout</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>sleep 200</exec>
+      </command>
+    </sequence>
+    <timeout>${option.timeout}</timeout>
+    <uuid>e7efef7d-0c0f-42fa-80fd-50fde570c9e2</uuid>
+  </job>
+</joblist>

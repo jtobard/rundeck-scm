@@ -1,0 +1,24 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>grp</group>
+    <id>904a2648-4b28-41aa-bf83-339396dba3a4</id>
+    <loglevel>INFO</loglevel>
+    <name>OnceDayJob</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='18' minute='08' seconds='0' />
+      <weekday day='FRI,MON,THU,TUE,WED' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>killall Slack</exec>
+      </command>
+    </sequence>
+    <uuid>904a2648-4b28-41aa-bf83-339396dba3a4</uuid>
+  </job>
+</joblist>
