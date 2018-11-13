@@ -1,7 +1,7 @@
 <joblist>
   <job>
-    <defaultTab>summary</defaultTab>
-    <description>modified job again</description>
+    <defaultTab>output</defaultTab>
+    <description>modified job again and again and ...</description>
     <executionEnabled>true</executionEnabled>
     <id>76edbe37-55dc-496c-92e0-1a3ee795b903</id>
     <loglevel>INFO</loglevel>
