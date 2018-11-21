@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <defaultTab>output</defaultTab>
+    <description>modified job again and again and ...</description>
+    <executionEnabled>true</executionEnabled>
+    <id>3fb4a0c3-8eea-43a6-82ce-94995d392477</id>
+    <loglevel>INFO</loglevel>
+    <name>test_job_B</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo "hi"</exec>
+      </command>
+    </sequence>
+    <uuid>3fb4a0c3-8eea-43a6-82ce-94995d392477</uuid>
+  </job>
+</joblist>
