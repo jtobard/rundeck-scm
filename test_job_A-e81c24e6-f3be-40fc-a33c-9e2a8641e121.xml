@@ -1,7 +1,7 @@
 <joblist>
   <job>
     <defaultTab>output</defaultTab>
-    <description>original</description>
+    <description>edit</description>
     <executionEnabled>true</executionEnabled>
     <id>e81c24e6-f3be-40fc-a33c-9e2a8641e121</id>
     <loglevel>INFO</loglevel>
