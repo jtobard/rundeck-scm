@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description>create ...</description>
+    <executionEnabled>true</executionEnabled>
+    <id>ba9ccf31-3da7-4c47-ae87-d2b6328f2d95</id>
+    <loglevel>INFO</loglevel>
+    <name>test_job_E</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>uname</exec>
+      </command>
+    </sequence>
+    <uuid>ba9ccf31-3da7-4c47-ae87-d2b6328f2d95</uuid>
+  </job>
+</joblist>
