@@ -1,18 +1,18 @@
 <joblist>
   <job>
-    <defaultTab>output</defaultTab>
-    <description>edit!</description>
+    <defaultTab>summary</defaultTab>
+    <description>create!</description>
     <executionEnabled>true</executionEnabled>
-    <id>a7cd9bd8-eac0-40e7-a2f9-40b49d5f3ef4</id>
+    <id>ca517b11-5edc-4f28-989f-c8afbf5538b2</id>
     <loglevel>INFO</loglevel>
-    <name>test_job_B</name>
+    <name>test_job_C</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
       <command>
-        <exec>echo "hi"</exec>
+        <exec>uname</exec>
       </command>
     </sequence>
-    <uuid>a7cd9bd8-eac0-40e7-a2f9-40b49d5f3ef4</uuid>
+    <uuid>ca517b11-5edc-4f28-989f-c8afbf5538b2</uuid>
   </job>
 </joblist>
