@@ -1,11 +1,11 @@
 <joblist>
   <job>
     <defaultTab>summary</defaultTab>
-    <description>test edit</description>
+    <description></description>
     <executionEnabled>true</executionEnabled>
-    <id>b6d1a217-7d19-4cf8-8bab-37adc7742fca</id>
+    <id>fc217f8a-bec0-48d7-b7ed-56a4ea83bdff</id>
     <loglevel>INFO</loglevel>
-    <name>test_job_B</name>
+    <name>test_job_A</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
@@ -13,6 +13,6 @@
         <exec>echo hi</exec>
       </command>
     </sequence>
-    <uuid>b6d1a217-7d19-4cf8-8bab-37adc7742fca</uuid>
+    <uuid>fc217f8a-bec0-48d7-b7ed-56a4ea83bdff</uuid>
   </job>
 </joblist>
