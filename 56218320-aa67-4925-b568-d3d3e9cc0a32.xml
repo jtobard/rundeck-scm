@@ -5,7 +5,7 @@
     <executionEnabled>true</executionEnabled>
     <id>56218320-aa67-4925-b568-d3d3e9cc0a32</id>
     <loglevel>INFO</loglevel>
-    <name>say_hi</name>
+    <name>say_hi_b</name>
     <nodeFilterEditable>false</nodeFilterEditable>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
