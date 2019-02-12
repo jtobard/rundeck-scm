@@ -1,0 +1,23 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>bfee4bb4-fce8-4a56-9a3f-783e5f8a751e</id>
+    <loglevel>INFO</loglevel>
+    <name>kill java</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <dayofmonth />
+      <month day='20' month='10' />
+      <time hour='19' minute='00' seconds='0' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>false</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>killall java</exec>
+      </command>
+    </sequence>
+    <uuid>bfee4bb4-fce8-4a56-9a3f-783e5f8a751e</uuid>
+  </job>
+</joblist>

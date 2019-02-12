@@ -1,0 +1,41 @@
+<joblist>
+  <job>
+    <defaultTab>output</defaultTab>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>93ad7ea4-01ae-4bb7-b2dd-cf984331d5b8</id>
+    <loglevel>INFO</loglevel>
+    <name>linux update</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: wintermute</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <schedule>
+      <month month='*' />
+      <time hour='18' minute='00' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>sudo apt-get update;</exec>
+      </command>
+      <command>
+        <exec>sudo apt-get upgrade -y</exec>
+      </command>
+      <command>
+        <exec>sudo apt autoremove -y</exec>
+      </command>
+    </sequence>
+    <uuid>93ad7ea4-01ae-4bb7-b2dd-cf984331d5b8</uuid>
+  </job>
+</joblist>

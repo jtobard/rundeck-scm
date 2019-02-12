@@ -1,0 +1,24 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>ea5b78e2-6557-4d08-ad14-772eeb3819dd</id>
+    <loglevel>INFO</loglevel>
+    <name>every10minutesJobB</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='9,10,11,12,13,14,15,16,17' minute='5/10' seconds='30' />
+      <weekday day='FRI,MON,THU,TUE,WED' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>open -a firefox</exec>
+      </command>
+    </sequence>
+    <uuid>ea5b78e2-6557-4d08-ad14-772eeb3819dd</uuid>
+  </job>
+</joblist>

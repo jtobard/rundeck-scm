@@ -1,0 +1,23 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>false</executionEnabled>
+    <id>5d18909c-f772-4aa8-8492-4050ca9f2b23</id>
+    <loglevel>INFO</loglevel>
+    <name>OnceEveryDay</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='19' minute='00' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>false</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>open -a uTorrent</exec>
+      </command>
+    </sequence>
+    <uuid>5d18909c-f772-4aa8-8492-4050ca9f2b23</uuid>
+  </job>
+</joblist>

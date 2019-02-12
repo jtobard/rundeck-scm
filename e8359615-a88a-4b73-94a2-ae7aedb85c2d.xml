@@ -1,0 +1,197 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='lvl' required='true' value='1' />
+      </options>
+    </context>
+    <defaultTab>output</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>e8359615-a88a-4b73-94a2-ae7aedb85c2d</id>
+    <loglevel>INFO</loglevel>
+    <name>donjon</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Random room</description>
+        <plugins>
+          <LogFilter type='key-value-data'>
+            <config>
+              <logData>true</logData>
+              <regex>^DATA:(.+?)\s*=\s*(.+)$</regex>
+            </config>
+          </LogFilter>
+        </plugins>
+        <script><![CDATA[#!/bin/bash
+
+function dado {
+    echo " _______ "
+    case $1 in
+        1) echo "|       |"
+        ;;
+        [2,3]) echo  "| o     |"
+        ;;
+        [4-6]) echo  "| o   o |"
+        ;;
+    esac
+    case $1 in
+        [1,3,5]) echo "|   o   |"
+        ;;
+        [2,4]) echo "|       |"
+        ;;
+        6) echo "| o   o |"
+        ;;
+    esac
+    case $1 in
+        1) echo "|       |"
+        ;;
+        [2,3]) echo "|     o |"
+        ;;
+        [4-6]) echo "| o   o |"
+        ;;
+    esac
+    
+   echo "'-------'"
+}
+
+dado_a=$(( ( RANDOM % 6 )  + 1 ))
+dado_b=$(( ( RANDOM % 6 )  + 1 ))
+dado_c=$(( ( RANDOM % 6 )  + 1 ))
+
+dado $dado_a
+
+Message="Habitacion de "
+case $dado_a in
+1)
+  Message=$Message"2x4"
+  ROOM=XS
+  ;;
+2)
+  Message=$Message"3x3"
+  ROOM=S
+  ;;
+3)
+  Message=$Message"4x4"
+  ROOM=S
+  ;;
+4)
+  Message=$Message"5x5"
+  ROOM=M
+  ;;
+5)
+  Message=$Message"2x8"
+  ROOM=M
+  ;;
+*)
+  Message=$Message"8x4"
+  ROOM=M
+  ;;
+esac
+
+echo $Message
+
+echo DATA:ROOM=$ROOM
+
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <step-plugin type='export-var'>
+          <configuration>
+            <entry key='export' value='room' />
+            <entry key='group' value='export' />
+            <entry key='value' value='${data.ROOM*}' />
+          </configuration>
+        </step-plugin>
+      </command>
+      <command>
+        <description>Random enemies</description>
+        <plugins>
+          <LogFilter type='key-value-data'>
+            <config>
+              <logData>true</logData>
+              <regex>^DATA:(.+?)\s*=\s*(.+)$</regex>
+            </config>
+          </LogFilter>
+        </plugins>
+        <script><![CDATA[#!/bin/bash
+
+ROOM=$1
+
+function dado {
+    echo " _______ "
+    case $1 in
+        1) echo "|       |"
+        ;;
+        [2,3]) echo  "| o     |"
+        ;;
+        [4-6]) echo  "| o   o |"
+        ;;
+    esac
+    case $1 in
+        [1,3,5]) echo "|   o   |"
+        ;;
+        [2,4]) echo "|       |"
+        ;;
+        6) echo "| o   o |"
+        ;;
+    esac
+    case $1 in
+        1) echo "|       |"
+        ;;
+        [2,3]) echo "|     o |"
+        ;;
+        [4-6]) echo "| o   o |"
+        ;;
+    esac
+    
+   echo "'-------'"
+}
+
+dado_a=$(( ( RANDOM % 6 )  + 1 ))
+dado_b=$(( ( RANDOM % 6 )  + 1 ))
+
+
+dado $dado_a
+
+Message="Habitacion de "
+case $dado_a in
+1)
+  Message=$Message"2x4"
+  ROOM=XS
+  ;;
+2)
+  Message=$Message"3x3"
+  ROOM=S
+  ;;
+3)
+  Message=$Message"4x4"
+  ROOM=S
+  ;;
+4)
+  Message=$Message"5x5"
+  ROOM=M
+  ;;
+5)
+  Message=$Message"2x8"
+  ROOM=M
+  ;;
+*)
+  Message=$Message"8x4"
+  ROOM=M
+  ;;
+esac
+
+echo $Message
+
+
+
+]]></script>
+        <scriptargs>${export.room}</scriptargs>
+      </command>
+    </sequence>
+    <uuid>e8359615-a88a-4b73-94a2-ae7aedb85c2d</uuid>
+  </job>
+</joblist>

@@ -1,0 +1,35 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>true</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>motion</group>
+    <id>a9619ccc-25bc-4c73-b36a-aaeff50efd24</id>
+    <loglevel>INFO</loglevel>
+    <name>sudo motion</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: wintermute</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <schedule>
+      <month month='*' />
+      <time hour='19' minute='00' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>false</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>sudo motion</exec>
+      </command>
+    </sequence>
+    <uuid>a9619ccc-25bc-4c73-b36a-aaeff50efd24</uuid>
+  </job>
+</joblist>

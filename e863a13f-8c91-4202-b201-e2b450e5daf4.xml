@@ -1,0 +1,24 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>e863a13f-8c91-4202-b201-e2b450e5daf4</id>
+    <loglevel>INFO</loglevel>
+    <name>every10minutesJobC</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='9,10,11,12,13,14,15,16,17' minute='5/10' seconds='55' />
+      <weekday day='FRI,MON,THU,TUE,WED' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>open -a Slack</exec>
+      </command>
+    </sequence>
+    <uuid>e863a13f-8c91-4202-b201-e2b450e5daf4</uuid>
+  </job>
+</joblist>
