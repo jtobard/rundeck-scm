@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>bd4791b3-6ffc-47bf-a222-3c1481ce8a13</id>
+    <loglevel>INFO</loglevel>
+    <name>exampple_job_to_export</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>fortune</exec>
+      </command>
+    </sequence>
+    <uuid>bd4791b3-6ffc-47bf-a222-3c1481ce8a13</uuid>
+  </job>
+</joblist>
