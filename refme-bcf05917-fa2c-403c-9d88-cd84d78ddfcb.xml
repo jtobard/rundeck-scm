@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>300b818e-154e-4a9e-88b7-de3eff98078b</id>
+    <loglevel>INFO</loglevel>
+    <name>refme</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo "hi"</exec>
+      </command>
+    </sequence>
+    <uuid>300b818e-154e-4a9e-88b7-de3eff98078b</uuid>
+  </job>
+</joblist>

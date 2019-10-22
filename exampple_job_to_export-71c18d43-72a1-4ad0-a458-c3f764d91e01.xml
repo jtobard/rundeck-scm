@@ -1,5 +1,10 @@
 <joblist>
   <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='test' />
+      </options>
+    </context>
     <defaultTab>summary</defaultTab>
     <description></description>
     <executionEnabled>true</executionEnabled>
@@ -11,6 +16,12 @@
     <sequence keepgoing='false' strategy='node-first'>
       <command>
         <exec>fortune</exec>
+      </command>
+      <command>
+        <importOptions>true</importOptions>
+        <jobref name='refme' nodeStep='true'>
+          <uuid>300b818e-154e-4a9e-88b7-de3eff98078b</uuid>
+        </jobref>
       </command>
     </sequence>
     <uuid>bd4791b3-6ffc-47bf-a222-3c1481ce8a13</uuid>
