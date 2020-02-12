@@ -3,6 +3,7 @@
     <context>
       <options preserveOrder='true'>
         <option name='test' />
+         <option name='newOpt' />
       </options>
     </context>
     <defaultTab>summary</defaultTab>

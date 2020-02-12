@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>300b818e-154e-4a9e-88b7-de3eff98076a</id>
+    <loglevel>INFO</loglevel>
+    <name>newJob</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>fortune</exec>
+      </command>
+    </sequence>
+    <uuid>300b818e-154e-4a9e-88b7-de3eff98076a</uuid>
+  </job>
+</joblist>
