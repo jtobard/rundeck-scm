@@ -1,0 +1,58 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='api_key' required='true' value='29DSV18L'>
+          <description>Get one [-&gt;here&lt;-](https://random-word-api.herokuapp.com/key?)</description>
+        </option>
+        <option name='number' required='true' value='3' values='3,9' valuesListDelimiter=','>
+          <description>number of words</description>
+        </option>
+      </options>
+    </context>
+    <defaultTab>output</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>rnd</group>
+    <id>0bc18200-55ad-4009-841a-6bb4b3990610</id>
+    <loglevel>INFO</loglevel>
+    <name>random_words</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <schedule>
+      <month month='*' />
+      <time hour='18' minute='05' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <plugins>
+          <LogFilter type='render-datatype'>
+            <config>
+              <datatype>text/html</datatype>
+              <sanitizeHtml>true</sanitizeHtml>
+              <striped>false</striped>
+            </config>
+          </LogFilter>
+        </plugins>
+        <script><![CDATA[#!/bin/bash
+sample=$(curl --silent "https://random-word-api.herokuapp.com/word?key=$RD_OPTION_API_KEY&number=$RD_OPTION_NUMBER")
+
+
+for row in $(echo "${sample}" | jq -r '.[]'); do
+
+    search=$(curl --silent "https://pixabay.com/api/?key=14579194-f5253376e8b7f33fc6669adfd&q=$row&image_type=photo&pretty=true&per_page=3")
+    echo "<h2>${row^}:</h2>"
+	for url in $(echo "${search}" | jq -r '.hits | .[] | .webformatURL?'); do
+   		echo "<img src='$url'>"
+   		#break;
+	done
+done
+]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>0bc18200-55ad-4009-841a-6bb4b3990610</uuid>
+  </job>
+</joblist>
