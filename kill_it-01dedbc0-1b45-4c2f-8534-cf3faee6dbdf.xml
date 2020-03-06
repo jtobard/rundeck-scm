@@ -7,9 +7,10 @@
     <loglevel>INFO</loglevel>
     <name>kill_it</name>
     <nodeFilterEditable>false</nodeFilterEditable>
+    <plugins />
     <schedule>
       <month month='*' />
-      <time hour='18' minute='04' seconds='0' />
+      <time hour='18' minute='32' seconds='0' />
       <weekday day='*' />
       <year year='*' />
     </schedule>
