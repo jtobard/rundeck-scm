@@ -1,0 +1,18 @@
+<joblist>
+  <job>
+    <defaultTab>nodes</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>3673c659-b559-49f4-9e3a-20528787cbb4</id>
+    <loglevel>INFO</loglevel>
+    <name>Clear Journal</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>sudo journalctl --vacuum-time=7d</exec>
+      </command>
+    </sequence>
+    <uuid>3673c659-b559-49f4-9e3a-20528787cbb4</uuid>
+  </job>
+</joblist>
