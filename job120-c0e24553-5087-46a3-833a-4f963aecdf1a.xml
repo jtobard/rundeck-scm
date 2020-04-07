@@ -1,0 +1,19 @@
+<joblist>
+  <job>
+    <defaultTab>nodes</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>c0e24553-5087-46a3-833a-4f963aecdf1a</id>
+    <loglevel>INFO</loglevel>
+    <name>job120</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <plugins />
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>uname</exec>
+      </command>
+    </sequence>
+    <uuid>c0e24553-5087-46a3-833a-4f963aecdf1a</uuid>
+  </job>
+</joblist>
