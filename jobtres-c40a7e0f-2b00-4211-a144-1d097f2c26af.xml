@@ -1,0 +1,20 @@
+<joblist>
+  <job>
+    <defaultTab>nodes</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>c40a7e0f-2b00-4211-a144-1d097f2c26af</id>
+    <loglevel>INFO</loglevel>
+    <name>jobtres</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <plugins />
+    <scheduleEnabled>true</scheduleEnabled>
+    <schedules />
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>echo "hi again"</exec>
+      </command>
+    </sequence>
+    <uuid>c40a7e0f-2b00-4211-a144-1d097f2c26af</uuid>
+  </job>
+</joblist>
